@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Marcos Web Design - Animation Ready</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8B5CF6",
+                        "secondary": "#EC4899",
+                        "accent": "#2DD4BF",
+                        "background-dark": "#0B0E14",
+                    },
+                    fontFamily: {
+                        "sans": ["Plus Jakarta Sans", "Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .glass {
+                @apply bg-white/5 backdrop-blur-xl border border-white/10;
+            }
+            .glass-glow {
+                @apply bg-white/5 backdrop-blur-xl border border-white/20 shadow-[0_0_20px_rgba(139,92,246,0.15)];
+            }
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/60;
+            }
+            .bg-mesh-layer {
+                background-image: 
+                    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 100% 100%, rgba(45, 212, 191, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .orbit-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
+        }
+        .orbit-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .orbit-dot {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+            z-index: 10;
+        }.website-frame {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            height: 300px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 4px solid #333;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            z-index: 25;
+        }
+        .frame-header {
+            height: 24px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 6px;
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+    </style>
+</head>
+
+<body class="bg-background-dark font-sans text-white overflow-x-hidden selection:bg-primary/30">
+    <div class="fixed inset-0 bg-mesh-layer pointer-events-none z-0" id="bg-animation-layer"></div>
+    <div class="fixed inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none z-0"
+        id="bg-secondary-layer"></div>
+
+    <!-- Version Toggle Button -->
+    <a href="landingpage2.html"
+        class="fixed top-4 right-4 z-[100] bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-white/20 transition-all shadow-lg flex items-center gap-2 group">
+        <span>Version 2</span>
+        <span
+            class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+    </a>
+
+    <header
+        class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-xl transition-all duration-300"
+        id="main-header">
+        <div class="px-6 md:px-10 py-4 flex items-center justify-between max-w-7xl mx-auto">
+            <div class="flex items-center gap-2 logo-container animate-reveal" id="nav-logo">
+                <div
+                    class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-xl">webhook</span>
+                </div>
+                <h2 class="text-lg font-bold tracking-tight">Marcos Web Design</h2>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/60 nav-links-stagger"
+                id="nav-menu">
+                <a class="hover:text-white transition-colors" href="#features-section">Services</a>
+                <a class="hover:text-white transition-colors" href="#portfolio-section">Portfolio</a>
+                <a class="hover:text-white transition-colors" href="#faq-section">FAQ</a>
+            </nav>
+            <button
+                class="glass-glow flex items-center justify-center rounded-full h-10 px-6 text-sm font-bold hover:bg-white/10 transition-all border-white/20 cta-button-header"
+                id="nav-cta">
+                Demander un devis
+            </button>
+        </div>
+    </header>
+    <main class="relative z-10">
+        <section class="relative pt-20 pb-16 md:pt-32 md:pb-32 px-6" id="hero-section">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="flex flex-col gap-8 hero-content-stagger" id="hero-text-wrapper">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-primary uppercase tracking-wider w-fit"
+                        id="hero-badge">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        Disponible pour nouveaux projets
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight text-gradient"
+                        id="hero-title">
+                        Obtenez un site web qui vous apporte enfin des clients.
+                    </h1>
+                    <p class="text-white/60 text-lg md:text-xl font-medium leading-relaxed max-w-xl"
+                        id="hero-description">
+                        Conçu pour les entreprises locales. Sans agence, sans jargon. Des résultats directs et
+                        mesurables.
+                    </p>
+                    <div class="flex flex-wrap gap-4" id="hero-buttons">
+                        <button
+                            class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:scale-105">
+                            Demander une démo gratuite
+                        </button>
+                        <button class="glass px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all">
+                            Voir les exemples
+                        </button>
+                    </div>
+                    <div class="mt-8" id="hero-steps">
+                        <p class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">Voici la suite :
+                        </p>
+                        <div class="flex flex-col md:flex-row gap-6 steps-stagger-wrapper">
+                            <div class="flex items-center gap-3 step-item">
+                                <span
+                                    class="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 text-primary text-xs font-bold border border-white/10">1</span>
+                                <span class="text-sm text-white/70">Appel de 10 min</span>
+                            </div>
+                            <div class="flex items-center gap-3 step-item">
+                                <span
+                                    class="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 text-primary text-xs font-bold border border-white/10">2</span>
+                                <span class="text-sm text-white/70">Démo gratuite</span>
+                            </div>
+                            <div class="flex items-center gap-3 step-item">
+                                <span
+                                    class="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 text-primary text-xs font-bold border border-white/10">3</span>
+                                <span class="text-sm text-white/70">Lancement du site</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative flex justify-center items-center hero-visual-wrapper" id="hero-visual">
+                    <div class="orbit-container" id="orbit-system">
+                        <div class="orbit-circle w-full h-full" id="ring-outer"></div>
+                        <div class="orbit-circle w-[70%] h-[70%]" id="ring-mid"></div>
+                        <div class="orbit-circle w-[40%] h-[40%]" id="ring-inner"></div>
+                        <div class="orbital-icons-group" id="orbital-stagger-group">
+                            <div class="orbit-dot" data-speed="1.2" style="top: 10%; left: 30%;">
+                                <span class="material-symbols-outlined text-primary">plumbing</span>
+                            </div>
+                            <div class="orbit-dot" data-speed="0.8" style="top: 50%; right: -20px;">
+                                <span class="material-symbols-outlined text-secondary">local_florist</span>
+                            </div>
+                            <div class="orbit-dot" data-speed="1.5" style="bottom: 10%; left: 20%;">
+                                <span class="material-symbols-outlined text-accent">cleaning_services</span>
+                            </div>
+                            <div class="orbit-dot" data-speed="1" style="top: 25%; right: 10%;">
+                                <span class="material-symbols-outlined text-white/80">person</span>
+                            </div>
+                            <div class="orbit-dot" data-speed="0.9" style="bottom: 25%; right: 15%;">
+                                <span class="material-symbols-outlined text-white/80">trending_up</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none"
+                        id="hero-mockup-container">
+                        <div class="website-frame animate-reveal" id="hero-website-frame">
+                            <div class="frame-header">
+                                <div class="dot bg-red-500/50"></div>
+                                <div class="dot bg-yellow-500/50"></div>
+                                <div class="dot bg-green-500/50"></div>
+                                <div class="ml-4 h-3 w-32 bg-white/10 rounded-full"></div>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div class="h-4 w-1/2 bg-white/20 rounded"></div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div class="h-20 bg-white/5 rounded"></div>
+                                    <div class="h-20 bg-white/5 rounded"></div>
+                                    <div class="h-20 bg-white/5 rounded"></div>
+                                </div>
+                                <div class="h-4 w-3/4 bg-white/10 rounded"></div>
+                                <div class="h-10 w-32 bg-primary/40 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 blur-[100px] rounded-full -z-10"
+                        id="hero-glow"></div>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6 relative overflow-hidden" id="features-section">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 blur-[120px] rounded-full -z-10">
+            </div>
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16 fade-up" id="features-header">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Simple, Efficace, À Vous.</h2>
+                    <p class="text-white/60 text-lg max-w-2xl">Chaque site inclut l'essentiel pour un référencement
+                        local optimal et une conversion maximale.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 card-stagger" id="features-grid">
+                    <div class="glass p-8 rounded-3xl hover:border-primary/50 transition-all group feature-card">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">smartphone</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Mobile-First</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">Design optimisé pour smartphone, là où se
+                            trouvent 80% de vos clients locaux.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl hover:border-accent/50 transition-all group feature-card">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">manage_search</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">SEO Google Maps</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">Structure et contenu conçus spécifiquement pour
+                            vous faire grimper dans les résultats locaux.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl hover:border-secondary/50 transition-all group feature-card">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">verified_user</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Propriété Totale</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">Vous restez propriétaire de votre domaine et de
+                            votre site à 100%. Aucune location cachée.</p>
+                    </div>
+                    <!-- New Cards -->
+                    <div class="glass p-8 rounded-3xl hover:border-primary/50 transition-all group feature-card">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">rocket_launch</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Vitesse Éclair</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">Score de 100/100 sur Google PageSpeed. Vos
+                            clients n'attendent pas.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl hover:border-accent/50 transition-all group feature-card">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">analytics</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Analytics Intégré</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">Suivez vos visiteurs sans cookies intrusifs.
+                            Simple, respectueux et clair.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl hover:border-secondary/50 transition-all group feature-card">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">dns</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Hébergement Inclus</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">Sécurisé (HTTPS), rapide (CDN mondial) et sans
+                            tracas technique pour vous.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6 relative" id="portfolio-section">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16 fade-up" id="portfolio-header">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Réalisations Récentes</h2>
+                    <p class="text-white/60 text-lg max-w-2xl">Découvrez les projets que j'ai conçus pour des clients
+                        exigeants.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 card-stagger" id="portfolio-grid">
+                    <!-- Brasserie Example -->
+                    <a href="brasserie-example-landing-page/code.html"
+                        class="group relative block rounded-3xl overflow-hidden glass border-white/10 hover:border-primary/50 transition-all duration-500 hover:scale-[1.02]">
+                        <div class="aspect-video bg-black/50 overflow-hidden relative">
+                            <img src="brasserie-image.png" alt="Brasserie Website"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 blur-[2px] opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">La Brasserie
+                            </h3>
+                            <p class="text-white/50 text-sm">Site vitrine pour restaurant local</p>
+                            <div class="mt-4 flex items-center gap-2 text-primary font-bold text-sm">
+                                Voir le projet <span
+                                    class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Solar Panel Example -->
+                    <a href="solarpanelexamplepage/lumina-solar-homepage.html"
+                        class="group relative block rounded-3xl overflow-hidden glass border-white/10 hover:border-accent/50 transition-all duration-500 hover:scale-[1.02]">
+                        <div class="aspect-video bg-black/50 overflow-hidden relative">
+                            <img src="solarpanelexamplepage/lumina-solar-homepage.png" alt="Lumina Solar Website"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 blur-[2px] opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">Lumina Solar
+                            </h3>
+                            <p class="text-white/50 text-sm">Landing Page Énergie Renouvelable</p>
+                            <div class="mt-4 flex items-center gap-2 text-accent font-bold text-sm">
+                                Voir le projet <span
+                                    class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Placeholder 2 -->
+                    <!-- Ledgerly Example -->
+                    <!-- Ledgerly Example -->
+                    <a href="ledgerly-saas-homepage/code.html"
+                        class="group relative block rounded-3xl overflow-hidden glass border-white/10 hover:border-[#3b82f6]/50 transition-all duration-500 hover:scale-[1.02]">
+                        <div class="aspect-video bg-black/50 overflow-hidden relative">
+                            <img src="ledgerly-saas-homepage/screen.png" alt="Ledgerly SaaS"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 blur-[2px] opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-[#3b82f6] transition-colors">Ledgerly
+                                SaaS
+                            </h3>
+                            <p class="text-white/50 text-sm">Dashboard Finance Moderne</p>
+                            <div class="mt-4 flex items-center gap-2 text-[#3b82f6] font-bold text-sm">
+                                Voir le projet <span
+                                    class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6 bg-white/[0.02] relative" id="comparison-section">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-up" id="comparison-header">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Pourquoi choisir cette solution ?</h2>
+                    <p class="text-white/60">Comparez et voyez la différence par vous-même.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 card-stagger" id="comparison-grid">
+                    <div class="glass p-10 rounded-3xl opacity-60 comparison-card" id="comp-1">
+                        <h3 class="text-white/40 font-bold uppercase tracking-widest text-xs mb-4">Agences Web</h3>
+                        <div class="text-3xl font-bold mb-2">2 000€ - 5 000€+</div>
+                        <p class="text-white/40 text-sm">Processus lent, coûts de structure élevés et jargon technique
+                            inutile.</p>
+                    </div>
+                    <div class="glass p-10 rounded-3xl opacity-60 comparison-card" id="comp-2">
+                        <h3 class="text-white/40 font-bold uppercase tracking-widest text-xs mb-4">Outils DIY</h3>
+                        <div class="text-3xl font-bold mb-2">Effort Énorme</div>
+                        <p class="text-white/40 text-sm">Prend un temps fou pour un résultat souvent amateur qui ne
+                            convertit pas.</p>
+                    </div>
+                    <div class="glass-glow p-10 rounded-3xl relative overflow-hidden ring-2 ring-primary comparison-card"
+                        id="comp-3">
+                        <div
+                            class="absolute top-0 right-0 bg-primary text-[10px] font-black px-4 py-1 rounded-bl-xl uppercase tracking-widest">
+                            Recommandé</div>
+                        <h3 class="text-primary font-bold uppercase tracking-widest text-xs mb-4">Marcos Web Design</h3>
+                        <div class="text-3xl font-bold mb-2">Le Juste Milieu</div>
+                        <p class="text-white/80 text-sm">Un résultat professionnel, rapide, sans intermédiaire et à un
+                            prix honnête.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6" id="pricing-section">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-up" id="pricing-header">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Tarifs Transparents</h2>
+                    <p class="text-white/60">Pas de frais cachés. Juste de la clarté.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto card-stagger" id="pricing-grid">
+                    <div class="glass p-12 rounded-[2.5rem] flex flex-col border-white/5" id="pricing-standard">
+                        <div class="flex items-center gap-3 mb-8">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">web</span>
+                            </div>
+                            <h3 class="text-xl font-bold">Création du Site</h3>
+                        </div>
+                        <div class="mb-10">
+                            <span class="text-6xl font-black">499€</span>
+                            <span class="text-white/40 font-medium"> une fois</span>
+                        </div>
+                        <ul class="space-y-4 mb-10 flex-1">
+                            <li class="flex items-center gap-3 text-white/70">
+                                <span class="material-symbols-outlined text-accent text-sm">check_circle</span>
+                                Design personnalisé &amp; responsive
+                            </li>
+                            <li class="flex items-center gap-3 text-white/70">
+                                <span class="material-symbols-outlined text-accent text-sm">check_circle</span>
+                                Structure optimisée conversion
+                            </li>
+                            <li class="flex items-center gap-3 text-white/70">
+                                <span class="material-symbols-outlined text-accent text-sm">check_circle</span>
+                                Configuration SEO locale
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-xl p-12 rounded-[2.5rem] flex flex-col border border-white/20 shadow-2xl relative overflow-hidden"
+                        id="pricing-premium">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 translate-x-[-100%]"
+                            id="shine-effect"></div>
+                        <div class="flex items-center gap-3 mb-8 relative z-10">
+                            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
+                                <span class="material-symbols-outlined">shield</span>
+                            </div>
+                            <h3 class="text-xl font-bold">Plan Maintenance</h3>
+                        </div>
+                        <div class="mb-10 relative z-10">
+                            <span class="text-6xl font-black">29€</span>
+                            <span class="text-white/60 font-medium"> / mois</span>
+                        </div>
+                        <ul class="space-y-4 mb-10 flex-1 relative z-10">
+                            <li class="flex items-center gap-3 text-white/90">
+                                <span class="material-symbols-outlined text-white text-sm">check_circle</span>
+                                Hébergement ultra-rapide inclus
+                            </li>
+                            <li class="flex items-center gap-3 text-white/90">
+                                <span class="material-symbols-outlined text-white text-sm">check_circle</span>
+                                Sécurité &amp; sauvegardes quotidiennes
+                            </li>
+                            <li class="flex items-center gap-3 text-white/90">
+                                <span class="material-symbols-outlined text-white text-sm">check_circle</span>
+                                Support technique réactif
+                            </li>
+                        </ul>
+                        <p
+                            class="text-center text-xs text-white/40 font-bold uppercase tracking-widest mt-4 relative z-10">
+                            Sans engagement. Annulez quand vous voulez.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 px-6 relative overflow-hidden" id="about-section">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12 glass p-12 rounded-[3rem] slide-in"
+                id="about-container">
+                <div class="relative" id="about-visual">
+                    <div
+                        class="w-40 h-40 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center border-2 border-white/10 overflow-hidden shadow-2xl z-10 relative">
+                        <span class="material-symbols-outlined text-7xl text-white/20">person</span>
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 bg-accent w-10 h-10 rounded-full border-4 border-background-dark flex items-center justify-center z-20"
+                        id="wave-icon">
+                        <span class="material-symbols-outlined text-white text-xl">waving_hand</span>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6 text-center md:text-left" id="about-content">
+                    <h2 class="text-3xl font-bold">À propos de Marcos</h2>
+                    <p class="text-white/70 text-lg leading-relaxed italic">
+                        "Salut, je suis Marcos. Je suis un webdesigner indépendant local. En travaillant avec moi, vous
+                        parlez directement à moi — pas d'agence, pas d'intermédiaire, juste des résultats directs."
+                    </p>
+                </div>
+            </div>
+            <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-accent/5 blur-[80px] rounded-full"
+                id="parallax-blob-1"></div>
+        </section>
+        <section class="py-24 px-6" id="faq-section">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-16 fade-up" id="faq-header">Questions Fréquentes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 card-stagger" id="faq-grid">
+                    <div class="glass p-8 rounded-3xl border-white/5 faq-card hover:bg-white/5 transition-colors">
+                        <h3 class="font-bold text-lg mb-4 text-primary">Et si je n'aime pas la démo ?</h3>
+                        <p class="text-sm text-white/50 leading-relaxed">Pas de problème. Si vous n'adorez pas, vous ne
+                            payez pas. Sans rancune.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl border-white/5 faq-card hover:bg-white/5 transition-colors">
+                        <h3 class="font-bold text-lg mb-4 text-primary">Est-ce que le site m'appartient ?</h3>
+                        <p class="text-sm text-white/50 leading-relaxed">Oui, à 100 %. Vous êtes propriétaire du domaine
+                            et du site. Je suis juste là pour qu'il fonctionne parfaitement.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl border-white/5 faq-card hover:bg-white/5 transition-colors">
+                        <h3 class="font-bold text-lg mb-4 text-primary">Puis-je annuler à tout moment ?</h3>
+                        <p class="text-sm text-white/50 leading-relaxed">Oui. Il n'y a pas de contrat à long terme. Vous
+                            pouvez annuler le plan de maintenance quand vous voulez.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-32 px-6" id="cta-section">
+            <div class="max-w-5xl mx-auto glass-glow p-16 md:p-24 rounded-[4rem] text-center relative overflow-hidden group border border-white/20"
+                id="final-cta-container">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[100px] rounded-full" id="cta-glow-1">
+                </div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 blur-[100px] rounded-full"
+                    id="cta-glow-2"></div>
+                <div class="relative z-10 flex flex-col items-center gap-8" id="cta-content">
+                    <h2 class="text-4xl md:text-6xl font-black leading-tight tracking-tight max-w-3xl" id="cta-title">
+                        Voyez à quoi ressemblera votre site avant de payer.
+                    </h2>
+                    <p class="text-white/60 text-lg max-w-2xl" id="cta-desc">
+                        Je construis une démo personnalisée gratuite pour votre entreprise. Si vous l'aimez, on avance.
+                        Sinon, vous ne devez rien.
+                    </p>
+                    <div class="pt-4" id="cta-action">
+                        <button
+                            class="bg-white text-background-dark hover:bg-white/90 px-10 py-5 rounded-full font-bold text-xl transition-all shadow-xl hover:scale-105 active:scale-95"
+                            id="cta-main-btn">
+                            Demander ma démo gratuite
+                        </button>
+                    </div>
+                    <div class="mt-8 inline-block glass px-6 py-4 rounded-2xl border-primary/20 bg-primary/5"
+                        id="cta-warning">
+                        <p class="text-sm text-white/80 leading-relaxed">
+                            ⚠️ Je n'accepte qu'un nombre limité de clients chaque mois pour garantir que chaque site
+                            reçoive l'attention qu'il mérite.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="py-12 px-6 border-t border-white/5 bg-background-dark relative z-10" id="main-footer">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-2 fade-up" id="footer-logo">
+                <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-xl">webhook</span>
+                </div>
+                <span class="font-bold tracking-tight">Marcos Web Design</span>
+            </div>
+            <div class="flex gap-8 text-sm font-medium text-white/40 card-stagger" id="footer-links">
+                <a class="hover:text-white transition-colors" href="#">Portfolio</a>
+                <a class="hover:text-white transition-colors" href="#">Services</a>
+                <a class="hover:text-white transition-colors" href="#">Contact</a>
+            </div>
+            <div class="text-white/20 text-xs font-medium uppercase tracking-[0.2em]" id="footer-copyright">
+                © 2024 Marcos Web Design.
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- Animations de la Section Hero ---
+            const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+            heroTl.from("#hero-badge", { y: -20, opacity: 0, duration: 0.8 })
+                .from("#hero-title", { y: 50, opacity: 0, duration: 1 }, "-=0.6")
+                .from("#hero-description", { y: 30, opacity: 0, duration: 1 }, "-=0.8")
+                .from("#hero-buttons button", { y: 20, stagger: 0.2, duration: 0.8 }, "-=0.8")
+                .from(".step-item", { x: -20, opacity: 0, stagger: 0.1, duration: 0.6 }, "-=0.6");
+
+            // Animation du Système d'Orbite - Rotation Continue
+            gsap.to("#orbit-system", {
+                rotation: 360,
+                duration: 60,
+                repeat: -1,
+                ease: "none"
+            });
+
+            // Contre-rotation pour garder les icônes droites ou laisser tourner.
+            // Flottement des points orbitaux pour plus de vie
+            gsap.to(".orbit-dot", {
+                y: "random(-10, 10)",
+                x: "random(-10, 10)",
+                duration: "random(2, 4)",
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                stagger: 0.5
+            });
+
+            // Apparition 3D du Cadre du Site Web
+            gsap.from("#hero-website-frame", {
+                rotationY: -30,
+                rotationX: 10,
+                opacity: 0,
+                scale: 0.8,
+                duration: 1.5,
+                ease: "back.out(1.2)",
+                delay: 0.5
+            });
+
+
+
+            // Pulsation de la Lueur Hero
+            gsap.to("#hero-glow", {
+                scale: 1.2,
+                opacity: 0.6,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+
+            // --- Section Fonctionnalités ---
+            gsap.from("#features-header", {
+                scrollTrigger: {
+                    trigger: "#features-header",
+                    start: "top 80%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1
+            });
+
+            ScrollTrigger.batch(".feature-card", {
+                start: "top 85%",
+                onEnter: batch => gsap.to(batch, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.15,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    overwrite: true
+                })
+            });
+
+            // Set initial state for feature cards to avoid flash
+            gsap.set(".feature-card", { opacity: 0, y: 50 });
+
+            // --- Section Comparaison ---
+            gsap.from("#comparison-header", {
+                scrollTrigger: {
+                    trigger: "#comparison-header",
+                    start: "top 80%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8
+            });
+
+            gsap.from(".comparison-card", {
+                scrollTrigger: {
+                    trigger: "#comparison-grid",
+                    start: "top 75%",
+                },
+                scale: 0.9,
+                opacity: 0,
+                y: 30,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: "back.out(1.5)"
+            });
+
+            // Mise en Valeur de la Carte Recommandée
+            gsap.to("#comp-3", {
+                scrollTrigger: {
+                    trigger: "#comp-3",
+                    start: "top 60%",
+                    toggleActions: "play none none reverse"
+                },
+                boxShadow: "0 0 30px rgba(139, 92, 246, 0.3)",
+                duration: 0.5
+            });
+
+            // --- Section Tarifs ---
+            gsap.from("#pricing-header", {
+                scrollTrigger: { trigger: "#pricing-header", start: "top 85%" },
+                y: 30, opacity: 0, duration: 1
+            });
+
+            gsap.from("#pricing-standard", {
+                scrollTrigger: { trigger: "#pricing-grid", start: "top 80%" },
+                x: -50, opacity: 0, duration: 1, ease: "power3.out"
+            });
+
+            gsap.from("#pricing-premium", {
+                scrollTrigger: { trigger: "#pricing-grid", start: "top 80%" },
+                x: 50, opacity: 0, duration: 1, delay: 0.2, ease: "power3.out"
+            });
+
+            // Boucle d'Effet de Brillance
+            gsap.to("#shine-effect", {
+                x: "200%",
+                duration: 3,
+                repeat: -1,
+                repeatDelay: 2,
+                ease: "power1.inOut"
+            });
+
+            // --- Section À Propos ---
+            gsap.from("#about-container", {
+                scrollTrigger: { trigger: "#about-section", start: "top 70%" },
+                y: 50, opacity: 0, duration: 1, ease: "power2.out"
+            });
+
+            // Main qui Salue (Waving Hand)
+            gsap.to("#wave-icon", {
+                scrollTrigger: { trigger: "#about-visual", start: "top 70%" },
+                rotation: 25,
+                duration: 0.4,
+                repeat: 5,
+                yoyo: true,
+                ease: "power1.inOut",
+                delay: 0.5
+            });
+
+            // Bulle Parallax
+            gsap.to("#parallax-blob-1", {
+                scrollTrigger: {
+                    trigger: "#about-section",
+                    scrub: 1.5
+                },
+                y: 100,
+                ease: "none"
+            });
+
+            // --- Section FAQ ---
+            gsap.from("#faq-header", {
+                scrollTrigger: { trigger: "#faq-header", start: "top 85%" },
+                y: 30, opacity: 0
+            });
+
+            gsap.from(".faq-card", {
+                scrollTrigger: { trigger: "#faq-grid", start: "top 85%" },
+                y: 30, opacity: 0, stagger: 0.1, duration: 0.8
+            });
+
+            // --- Section CTA ---
+            gsap.from("#final-cta-container", {
+                scrollTrigger: { trigger: "#cta-section", start: "top 80%" },
+                scale: 0.9, opacity: 0, duration: 1, ease: "power3.out"
+            });
+
+            gsap.from("#cta-content > *", {
+                scrollTrigger: { trigger: "#cta-section", start: "top 70%" },
+                y: 30, opacity: 0, stagger: 0.1, duration: 0.8, delay: 0.3
+            });
+
+            // Pied de Page (Footer)
+            gsap.from("#main-footer > div > *", {
+                scrollTrigger: { trigger: "#main-footer", start: "top 95%" },
+                y: 20, opacity: 0, stagger: 0.1
+            });
+        });
+    </script>
+</body>
+
+</html>

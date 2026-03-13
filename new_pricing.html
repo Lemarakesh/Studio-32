@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modèles de Partenariat - Tarification</title>
+<!-- Tailwind CSS v3 with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0a0518',
+              purple: '#7c3aed',
+              neon: '#a855f7',
+              accent: '#d8b4fe'
+            }
+          },
+          boxShadow: {
+            'neon': '0 0 20px rgba(168, 85, 247, 0.4)',
+            'neon-strong': '0 0 35px rgba(168, 85, 247, 0.6)'
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Typography and Animations -->
+<style data-purpose="typography">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0518;
+    }
+  </style>
+<style data-purpose="layout-effects">
+    .glow-border {
+      position: relative;
+    }
+    .glow-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(45deg, #7c3aed, #d8b4fe, #7c3aed);
+      border-radius: 1.5rem;
+      z-index: -1;
+      opacity: 0.5;
+    }
+    .highlight-card:hover::before {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+  </style>
+<!-- END: Custom Typography and Animations -->
+</head>
+<body class="text-gray-100 min-h-screen flex items-center justify-center p-6">
+<!-- BEGIN: Pricing Section -->
+<section class="max-w-6xl w-full py-12" data-purpose="pricing-container">
+<!-- BEGIN: Header Section -->
+<header class="text-center mb-16">
+<h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-brand-accent" style="">
+        Modèles de Partenariat
+      </h1>
+<p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto" style="">
+        Choisissez comment vous voulez dominer votre marché. Paiement initial ou abonnement tout-en-un.
+      </p>
+</header>
+<!-- END: Header Section -->
+<!-- BEGIN: Pricing Cards Grid -->
+<div class="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
+<!-- BEGIN: Standard Card (Paiement Unique) -->
+<article class="bg-gray-900/50 border border-gray-800 rounded-3xl p-8 flex flex-col transition-all duration-300 hover:bg-gray-900/80" data-purpose="pricing-card-standard">
+<div class="mb-8">
+<h2 class="text-2xl font-bold mb-3 text-white" style="">Paiement Initial</h2>
+<p class="text-gray-400 text-sm leading-relaxed" style="">
+            Vous êtes propriétaire de votre site dès le premier jour.
+          </p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-bold text-white" style="">300 €</span>
+<span class="text-gray-400" style="">/ initial</span>
+</div>
+<p class="text-white font-bold mt-4 text-xl" style="">+ 19 € / mois d’hébergement professionnel</p>
+</div>
+<!-- Features List -->
+<ul class="space-y-4 mb-10 flex-grow" data-purpose="feature-list">
+<li class="flex items-start gap-3" style="">
+<svg class="w-5 h-5 text-brand-purple mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span class="text-gray-300" style="">Conception &amp; Développement sur-mesure</span>
+</li>
+<li class="flex items-start gap-3" style="">
+<svg class="w-5 h-5 text-brand-purple mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span class="text-gray-300" style="">Code source complet fourni</span>
+</li>
+<li class="flex items-start gap-3" style="">
+<svg class="w-5 h-5 text-brand-purple mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span class="text-gray-300" style="">Hébergement rapide &amp; Sécurité SSL (19€/m)</span>
+</li>
+<li class="flex items-start gap-3" style="">
+<svg class="w-5 h-5 text-brand-purple mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span class="text-gray-300" style="">Accès Administrateur CMS (Modifiez vos textes)</span>
+</li>
+</ul>
+<button class="w-full py-4 px-6 rounded-xl border border-brand-purple/50 text-brand-accent font-bold hover:bg-brand-purple/10 transition-colors" style="">
+          Commencer ce modèle
+        </button>
+</article>
+<!-- END: Standard Card -->
+<!-- BEGIN: Highlighted Card (Création Offerte) -->
+<article class="glow-border highlight-card bg-brand-dark/90 rounded-3xl p-8 flex flex-col relative shadow-neon border border-brand-purple/30" data-purpose="pricing-card-premium">
+<!-- Highlight Badge -->
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-purple px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase" style="">
+          0 € de frais de création
+        </div>
+<div class="mb-8">
+<h2 class="text-2xl font-bold mb-3 text-white" style="">Création Offerte</h2>
+<p class="text-brand-accent/80 text-sm leading-relaxed" style="">
+            Gardez votre trésorerie. L’abonnement tout-inclus.
+          </p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-extrabold text-white" style="">49 €</span>
+<span class="text-gray-400" style="">/ mois</span>
+</div>
+</div>
+<!-- Features List -->
+<ul class="space-y-4 mb-10 flex-grow" data-purpose="feature-list-premium">
+<li class="flex items-start gap-3" style="">
+<svg class="w-5 h-5 text-brand-neon mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span class="text-white font-medium" style="">Le même site Premium (Design &amp; Code)</span>
+</li>
+<li class="flex items-start gap-3" style="">
+<svg class="w-5 h-5 text-brand-neon mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span class="text-gray-200" style="">Modifications illimitées (Textes/Images par nous)</span>
+</li>
+<li class="flex items-start gap-3" style="">
+<svg class="w-5 h-5 text-brand-neon mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span class="text-gray-200" style="">Support dédié prioritaire</span>
+</li>
+<li class="flex items-start gap-3" style="">
+<svg class="w-5 h-5 text-brand-neon mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span class="text-gray-200" style="">Mises à jour techniques &amp; sécurité continues</span>
+</li>
+</ul>
+<div class="space-y-4">
+<button class="w-full py-4 px-6 rounded-xl bg-brand-purple text-white font-bold hover:bg-brand-neon shadow-neon-strong transition-all transform hover:-translate-y-1" style="">
+            S’abonner &amp; Démarrer
+          </button>
+<p class="text-center text-xs text-gray-500 italic" style="">
+            *Engagement de 3 mois minimum garanti.
+          </p>
+</div>
+</article>
+<!-- END: Highlighted Card -->
+</div>
+<!-- END: Pricing Cards Grid -->
+</section>
+<!-- END: Pricing Section -->
+</body></html>

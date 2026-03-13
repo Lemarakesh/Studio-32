@@ -1,0 +1,513 @@
+<html lang="fr">
+
+<head></head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-primary antialiased">
+    <!-- Back Button -->
+    <a href="../code.html"
+        class="fixed top-24 left-4 z-[60] bg-white/10 backdrop-blur-md border border-white/10 text-primary dark:text-white p-3 rounded-full hover:bg-accent hover:text-white transition-all duration-300 group shadow-lg flex items-center justify-center">
+        <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+    </a>```html
+
+
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Lumina Solar Belgique - Illuminez votre futur</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f1729",
+                        "primary-hover": "#1e293b",
+                        "accent": "#F59E0B",
+                        "background-light": "#F8FAFC",
+                        "background-dark": "#14171e",
+                        "neutral-surface": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",  // 12px
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #0f1729;
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 0 0 4px rgba(15, 23, 41, 0.1);
+            transition: box-shadow 0.2s;
+        }
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 0 8px rgba(15, 23, 41, 0.15);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(15, 23, 41, 0.05);
+        }
+    </style>
+
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined text-xl">solar_power</span>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-primary">Lumina<span
+                            class="text-primary/60">Solar</span></span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a class="text-sm font-medium text-primary/70 hover:text-primary transition-colors"
+                        href="#">Résidentiel</a>
+                    <a class="text-sm font-medium text-primary/70 hover:text-primary transition-colors"
+                        href="#">Professionnel</a>
+                    <a class="text-sm font-medium text-primary/70 hover:text-primary transition-colors"
+                        href="#">Réalisations</a>
+                    <a class="text-sm font-medium text-primary/70 hover:text-primary transition-colors" href="#">À
+                        Propos</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a class="hidden md:inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary-hover transition-all shadow-lg shadow-primary/20"
+                        href="#quote">
+                        Demander un Devis
+                    </a>
+                    <button class="md:hidden p-2 rounded-lg text-primary hover:bg-primary/5">
+                        <span class="material-icons">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pt-20">
+        <section class="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    <div class="lg:col-span-6 flex flex-col items-start text-left space-y-8">
+                        <div
+                            class="inline-flex items-center px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider">
+                            <span class="material-icons text-sm mr-1">wb_sunny</span>
+                            top 10 en Flandre &amp; Wallonie
+                        </div>
+                        <h1
+                            class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-primary leading-[1.15]">
+                            Illuminez votre futur avec le <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">Soleil
+                                Belge</span>
+                        </h1>
+                        <p class="text-lg text-primary/70 max-w-lg leading-relaxed">
+                            Transformez votre toit en centrale électrique. Installations solaires premium, stockage par
+                            batterie et recharge de VE sur mesure pour les foyers belges modernes. Économisez jusqu'à
+                            70% sur vos factures.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                            <a class="inline-flex items-center justify-center px-6 py-4 border border-transparent text-base font-semibold rounded-lg text-white bg-primary hover:bg-primary-hover transition-all shadow-xl shadow-primary/25 w-full sm:w-auto group"
+                                href="#calculator">
+                                Calculer mes Économies
+                                <span
+                                    class="material-icons ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                            <a class="inline-flex items-center justify-center px-6 py-4 border border-primary/20 bg-white text-base font-semibold rounded-lg text-primary hover:bg-gray-50 transition-all w-full sm:w-auto"
+                                href="#">
+                                Voir nos Projets
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-4 text-sm text-primary/60 pt-2">
+                            <div class="flex -space-x-2">
+                                <img alt="Avatar client" class="w-8 h-8 rounded-full border-2 border-white"
+                                    data-alt="Small avatar of a smiling customer"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF2sh211GA_X_OqLEUYk-XLUZ6-qXpYVE6GiBJronK59sscNs6PMRr8JIBWOsAT7xzICKOupw98NBuHvvNcQ_t1kL39EStb9Yss1sr1G38h8SCaqpbKE7UyAtDC9iUr5XCKDFecMp7K0E1gqQmaOL0vOn_6wGMhuEJ9aG5i6Z4nD5Dont0Xl51jUCkkVxnR80gySahDs1SLfgP0urFygAExqAzv6R5MamL9BJj4a9pH6_jWkDfHViPC3Y-PdOp5N0jiOIrlR4pSfIO" />
+                                <img alt="Avatar client" class="w-8 h-8 rounded-full border-2 border-white"
+                                    data-alt="Small avatar of a smiling customer"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEQEOhgtV0yodFdz_dLMqHYZEQhCSf5gRuB6SORVyCWu75wc2VfiejQeEwzXDfHaAhmAiMixMgXsVdUICYBHZfeVldE8BprvRGy7rBe2QBoUiprz2cWxtRiBRIch4FEw7DTE62lMPOcCXKcrbQnkHKSGInQit5pNJK6O98BYf3X_KeonnwzzsAWJmh3zjYXqvA2WhYWAnUxh9AknRdl1UigrPNR3tME9ih7cgksxhN23U5ZAJQGDJHAycwPR5rIgqjM5Z8jzorYtOw" />
+                                <img alt="Avatar client" class="w-8 h-8 rounded-full border-2 border-white"
+                                    data-alt="Small avatar of a smiling customer"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPPo0C3iYxTqZDV4jWutiq6W64P14-h6e809hIhauZ3MCZC3BnzIQXLn_SG3zsar-GkrnBcJmUSFU89Y_iZxsZcrHtKvWLeZu0vYUqnqoJXhn-zKma8nBKytBPNyB-qyyzi-HmUfeSBBcpY_zyGmS_D0H2i6HVpKamx4yJbuEngTkylUROJDufSy2D-JYbBINJVjtUT8PJKdk2_G3V4kKI4G6DnXb1ASCv3Lw7AVUjzFSXgQDDJyplHfwR8l8BlGC02Ve7ai0Qujp1" />
+                            </div>
+                            <p>Déjà <span class="font-bold text-primary">2.500+</span> Familles Belges nous font
+                                confiance</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 relative">
+                        <div
+                            class="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 group aspect-[4/3] lg:aspect-auto lg:h-[600px]">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-60 z-10">
+                            </div>
+                            <img alt="Panneaux solaires modernes sur un toit d'ardoise"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                data-alt="Sleek black solar panels on a dark tiled roof against a blue sky"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzv_tYz_-0ia_S2_kmk3GJKbNoMlU5fBsg_PqHTH0wp74lPioZhr2uHZDRpuvplrtcluQx-Otvrd_nqwF-VMaUIXQtud4S-5_kPP4DhE9k0zODVnTfb2HTR7-auoe2Vv4Gi-4pmgRcebQW25sW-yfVmbCpK7q3PY189WR-DWpqJ-sR87U-scuX--RMhfykjc-Icr9MEP29A6424YvI9Mkk32cuoDOJElCGJz6hgGdSpwAI-aWqAlQek3w-3IteHp62gOiEDqEetnoy" />
+                            <div
+                                class="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-lg max-w-[200px] border border-white/20">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                    <span class="text-xs font-bold uppercase text-primary/60 tracking-wider">Système en
+                                        Ligne</span>
+                                </div>
+                                <div class="text-2xl font-bold text-primary">4.2 kW</div>
+                                <div class="text-xs text-primary/60">Production Actuelle (Gand)</div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-radial from-primary/5 to-transparent blur-3xl rounded-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-10 border-y border-primary/5 bg-white/50 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sm font-semibold text-primary/40 uppercase tracking-widest mb-8">Nos
+                    Partenaires Technologiques Premium</p>
+                <div
+                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div class="h-8 flex items-center font-bold text-xl font-sans tracking-tight">ELECTRO</div>
+                    <div class="h-8 flex items-center font-bold text-xl font-sans tracking-tight">SolaSola</div>
+                    <div class="h-8 flex items-center font-bold text-xl font-sans tracking-tight">DSA</div>
+                    <div class="h-8 flex items-center font-bold text-xl font-sans tracking-tight">TAIPEI</div>
+                    <div class="h-8 flex items-center font-bold text-xl font-sans tracking-tight">Enphasis</div>
+                    <div class="h-8 flex items-center font-bold text-xl font-sans tracking-tight">LB Chem</div>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 lg:py-32 bg-background-light relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Indépendance Énergétique Totale</h2>
+                    <p class="text-lg text-primary/60">Nous n'installons pas que des panneaux. Nous concevons un
+                        écosystème énergétique complet pour votre maison afin de maximiser l'autoconsommation.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white rounded-lg p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-primary/5 group relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-accent/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center text-accent mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">grid_view</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Panneaux Haute Efficacité</h3>
+                        <p class="text-primary/60 leading-relaxed mb-6">Modules "Full Black" premium conçus pour
+                            extraire un maximum d'énergie, même durant les automnes belges nuageux.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-sm text-primary/80">
+                                <span class="material-icons text-green-500 text-sm mr-2">check_circle</span> Garantie de
+                                Performance 25 Ans
+                            </li>
+                            <li class="flex items-center text-sm text-primary/80">
+                                <span class="material-icons text-green-500 text-sm mr-2">check_circle</span> Excellents
+                                en Basse Luminosité
+                            </li>
+                        </ul>
+                        <a class="text-primary font-semibold text-sm hover:underline inline-flex items-center"
+                            href="#">En savoir plus <span class="material-icons text-sm ml-1">arrow_forward</span></a>
+                    </div>
+                    <div
+                        class="bg-white rounded-lg p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-primary/5 group relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-accent/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center text-accent mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">battery_charging_full</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Stockage Intelligent</h3>
+                        <p class="text-primary/60 leading-relaxed mb-6">Stockez l'excédent d'énergie solaire le jour
+                            pour alimenter votre foyer la nuit, réduisant votre dépendance au réseau.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-sm text-primary/80">
+                                <span class="material-icons text-green-500 text-sm mr-2">check_circle</span> Protection
+                                contre les Coupures
+                            </li>
+                            <li class="flex items-center text-sm text-primary/80">
+                                <span class="material-icons text-green-500 text-sm mr-2">check_circle</span> Gestion
+                                Intelligente des Charges
+                            </li>
+                        </ul>
+                        <a class="text-primary font-semibold text-sm hover:underline inline-flex items-center"
+                            href="#">En savoir plus <span class="material-icons text-sm ml-1">arrow_forward</span></a>
+                    </div>
+                    <div
+                        class="bg-white rounded-lg p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-primary/5 group relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-accent/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center text-accent mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">electric_car</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Bornes de Recharge VE</h3>
+                        <p class="text-primary/60 leading-relaxed mb-6">Roulez au soleil. Chargeurs intelligents qui
+                            priorisent automatiquement l'excédent solaire pour votre véhicule.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-sm text-primary/80">
+                                <span class="material-icons text-green-500 text-sm mr-2">check_circle</span> Mode
+                                "Solaire Uniquement"
+                            </li>
+                            <li class="flex items-center text-sm text-primary/80">
+                                <span class="material-icons text-green-500 text-sm mr-2">check_circle</span>
+                                Compatibilité Type 2 Universelle
+                            </li>
+                        </ul>
+                        <a class="text-primary font-semibold text-sm hover:underline inline-flex items-center"
+                            href="#">En savoir plus <span class="material-icons text-sm ml-1">arrow_forward</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 lg:py-24 bg-primary text-white relative overflow-hidden" id="calculator">
+            <div class="absolute inset-0 opacity-10"
+                style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;">
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="lg:grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Calculez vos Économies Potentielles</h2>
+                        <p class="text-lg text-gray-300 mb-8">Découvrez combien vous pourriez économiser en passant au
+                            solaire. Un foyer belge moyen rentabilise son investissement en moins de 5 ans.</p>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 text-accent">
+                                    <span class="material-icons text-xl">savings</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Économies Immédiates</h4>
+                                    <p class="text-sm text-gray-400">Réduisez drastiquement vos factures d'électricité
+                                        mensuelles dès le premier jour.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 text-accent">
+                                    <span class="material-icons text-xl">trending_up</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Valorisez votre Bien</h4>
+                                    <p class="text-sm text-gray-400">Les installations solaires augmentent la valeur
+                                        immobilière et améliorent le score PEB.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white text-primary rounded-xl p-8 shadow-2xl relative mt-12 lg:mt-0">
+                        <div
+                            class="absolute -top-6 right-8 bg-accent text-primary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                            Estimation Approximative
+                        </div>
+                        <div class="space-y-8">
+                            <div>
+                                <label
+                                    class="block text-sm font-semibold text-primary/60 mb-4 uppercase tracking-wide">Facture
+                                    d'Électricité Mensuelle</label>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-sm text-primary/50">0€</span>
+                                    <span class="text-3xl font-bold text-primary"><span
+                                            id="billValue">150</span>€</span>
+                                    <span class="text-sm text-primary/50">500€+</span>
+                                </div>
+                                <input class="w-full" id="billSlider" max="500" min="0"
+                                    oninput="document.getElementById('billValue').innerText = this.value; document.getElementById('savingsValue').innerText = Math.round(this.value * 12 * 0.7); document.getElementById('co2Value').innerText = Math.round(this.value * 0.8);"
+                                    type="range" value="150" />
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                                <div class="p-4 bg-background-light rounded-lg text-center">
+                                    <p class="text-xs text-primary/60 mb-1">Économies Annuelles Est.</p>
+                                    <p class="text-2xl font-bold text-accent"><span id="savingsValue">1260</span>€</p>
+                                </div>
+                                <div class="p-4 bg-background-light rounded-lg text-center">
+                                    <p class="text-xs text-primary/60 mb-1">CO2 Épargné (kg/an)</p>
+                                    <p class="text-2xl font-bold text-primary">~<span id="co2Value">120</span></p>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full py-4 bg-primary text-white rounded-lg font-bold hover:bg-primary-hover transition-colors shadow-lg">
+                                Obtenir mon Rapport Détaillé
+                            </button>
+                            <p class="text-xs text-center text-gray-400 mt-4">*Estimations basées sur l'ensoleillement
+                                moyen en Belgique et les prix actuels de l'énergie.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 bg-background-light">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary mb-2">Réalisations Récentes</h2>
+                        <p class="text-primary/60">Découvrez comment nous transformons les foyers en Belgique.</p>
+                    </div>
+                    <a class="hidden md:inline-flex items-center text-primary font-semibold hover:text-accent transition-colors"
+                        href="#">
+                        Voir tous les projets <span class="material-icons ml-1">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="group relative overflow-hidden rounded-xl h-80 cursor-pointer">
+                        <img alt="Maison moderne avec panneaux solaires"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            data-alt="Modern white villa with black solar panels on flat roof"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Sm6vkwg3HBru7vxwyEJMAHRESe1KOEHXNVVdAyxCO8oKsforIaF4yajbM7pKM-U8poWi0pDJLNZVqA13DXNbLx9VpKwNHPLM5aYYjaRcmBjeDmMTy2gbME_KwTY8XE1NqjLyg8iXKowAOgpN9oD0tzcximp22j1tBmVQ-qHi8t5r4tlOY25LdMWoA2OG3d3kej51h_1NhpWs4OqGmaIbH4DAa7YII_xPujcuzM37vlufcbiZ5eDUnQlYKy2fOe9Hen-K-zaUVHvh" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent p-8 flex flex-col justify-end">
+                            <span class="text-accent text-xs font-bold uppercase mb-2">Résidentiel • Anvers</span>
+                            <h3
+                                class="text-white text-xl font-bold group-hover:underline decoration-accent underline-offset-4">
+                                Intégration Villa Moderne</h3>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-xl h-80 cursor-pointer">
+                        <img alt="Panneaux solaires sur maison en briques"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            data-alt="Traditional brick house with solar panels on pitched roof"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUbJe8wWWXPEOeHtZ9wD4XTBLGRqU7jVDJUB18CNpQYz62P_Rbhrs_N8TpAzY3XQV7DfINEnQCnoPd5myiRFCAXd9Rbi8K3FVd15TAqEFg9Qt2BK7VxT6ICDDx4KU6QLE5D8w8qE2Iw6dGE-p7ZoP4052KGIHpqvBv3VA2-WJ9gF45WiQqET9eHVjthkbjoer5oxIUr-JFgZf0evEXr4qFoLVx6fK95gEVfGKt_yhMaBRwOCLHF66IoVKyTfw0qwjdPr26x1xkg3yK" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent p-8 flex flex-col justify-end">
+                            <span class="text-accent text-xs font-bold uppercase mb-2">Rénovation • Louvain</span>
+                            <h3
+                                class="text-white text-xl font-bold group-hover:underline decoration-accent underline-offset-4">
+                                Rénovation Maison Historique</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 md:hidden text-center">
+                    <a class="inline-flex items-center text-primary font-semibold hover:text-accent transition-colors"
+                        href="#">
+                        Voir tous les projets <span class="material-icons ml-1">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-primary text-white py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-xl">solar_power</span>
+                        </div>
+                        <span class="font-bold text-xl tracking-tight text-white">Lumina<span
+                                class="text-white/60">Solar</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Leader de la transition énergétique en Belgique avec des solutions solaires premium pour
+                        particuliers et entreprises.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a class="text-gray-400 hover:text-white transition-colors" href="#"><i
+                                class="material-icons text-xl">facebook</i></a>
+                        <a class="text-gray-400 hover:text-white transition-colors" href="#"><i
+                                class="material-icons text-xl">share</i></a>
+                        <a class="text-gray-400 hover:text-white transition-colors" href="#"><i
+                                class="material-icons text-xl">email</i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Solutions</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a class="hover:text-accent transition-colors" href="#">Solaire Résidentiel</a></li>
+                        <li><a class="hover:text-accent transition-colors" href="#">Solaire Commercial</a></li>
+                        <li><a class="hover:text-accent transition-colors" href="#">Stockage sur Batterie</a></li>
+                        <li><a class="hover:text-accent transition-colors" href="#">Bornes de Recharge</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Société</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a class="hover:text-accent transition-colors" href="#">À Propos</a></li>
+                        <li><a class="hover:text-accent transition-colors" href="#">Réalisations</a></li>
+                        <li><a class="hover:text-accent transition-colors" href="#">Carrières</a></li>
+                        <li><a class="hover:text-accent transition-colors" href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Nous Contacter</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <span class="material-icons text-accent text-sm mt-1">location_on</span>
+                            <span>Kouter 12<br />9000 Gand, Belgique</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-icons text-accent text-sm">phone</span>
+                            <span>+32 9 123 45 67</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-icons text-accent text-sm">mail</span>
+                            <span>hello@luminasolar.be</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>© 2023 Lumina Solar Belgique. Tous droits réservés.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a class="hover:text-white transition-colors" href="#">Politique de Confidentialité</a>
+                    <a class="hover:text-white transition-colors" href="#">Conditions d'Utilisation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    ```
+</body>
+
+</html>

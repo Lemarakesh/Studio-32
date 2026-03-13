@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ledgerly - Modern Finance for Modern Founders</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#64fcf2",
+                        "primary-dark": "#40e0d5",
+                        "secondary": "#a855f7",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0B0C10",
+                        "surface-dark": "#1F2833",
+                        "surface-highlight": "#2a3642",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "2xl": "1.5rem", "3xl": "2rem", "full": "9999px" },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(11, 12, 16, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(135deg, #a855f7, #3b82f6);
+        }
+
+        .perspective-container {
+            perspective: 1000px;
+        }
+
+        .tilted-dashboard {
+            transform: rotateX(20deg) rotateY(0deg) scale(0.9);
+            transform-style: preserve-3d;
+            box-shadow: 0 25px 50px -12px rgba(100, 252, 242, 0.15);
+            transition: transform 0.5s ease;
+        }
+
+        .tilted-dashboard:hover {
+            transform: rotateX(10deg) rotateY(0deg) scale(0.95);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-background-dark overflow-x-hidden">
+    <!-- Back Button -->
+    <a href="../code.html"
+        class="fixed top-6 left-6 z-[60] bg-surface-dark border border-white/10 text-white p-3 rounded-full hover:bg-primary hover:text-background-dark transition-all duration-300 group shadow-lg flex items-center justify-center">
+        <span class="material-icons group-hover:-translate-x-1 transition-transform">arrow_back</span>
+    </a>
+    <!-- Noise Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-20 mix-blend-overlay bg-noise"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-40 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-background-dark font-bold text-lg">
+                        L</div>
+                    <span class="font-bold text-xl tracking-tight">Ledgerly</span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a class="text-sm font-medium text-gray-300 hover:text-primary transition-colors duration-200"
+                            href="#">Features</a>
+                        <a class="text-sm font-medium text-gray-300 hover:text-primary transition-colors duration-200"
+                            href="#">Pricing</a>
+                        <a class="text-sm font-medium text-gray-300 hover:text-primary transition-colors duration-200"
+                            href="#">Developers</a>
+                        <a class="text-sm font-medium text-gray-300 hover:text-primary transition-colors duration-200"
+                            href="#">Company</a>
+                    </div>
+                </div>
+                <!-- CTA -->
+                <div class="hidden md:block">
+                    <a class="group relative inline-flex items-center justify-center px-6 py-2 text-sm font-bold text-background-dark transition-all duration-200 bg-primary font-display rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary hover:bg-primary-dark hover:shadow-[0_0_20px_rgba(100,252,242,0.4)]"
+                        href="#">
+                        Start Free Trial
+                    </a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                        type="button">
+                        <span class="sr-only">Open main menu</span>
+                        <span class="material-icons">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Orbs -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none z-0">
+            <div
+                class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-float">
+            </div>
+            <div
+                class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-[100px] animate-float-delayed">
+            </div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Badge -->
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-dark border border-white/10 mb-8 animate-[fadeIn_1s_ease-out]">
+                <span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">v2.0 Now Available</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+                Modern Finance for <br class="hidden md:block" />
+                <span class="text-gradient">Modern Founders</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 font-light">
+                The financial OS built for the next generation of business. Automate, analyze, and scale without the
+                banking headaches.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-full text-background-dark bg-primary hover:bg-primary-dark hover:shadow-[0_0_20px_rgba(100,252,242,0.5)] transition-all duration-300 md:text-lg"
+                    href="#">
+                    Get Started
+                    <span class="material-icons ml-2 text-sm">arrow_forward</span>
+                </a>
+                <a class="inline-flex items-center justify-center px-8 py-4 border border-white/10 text-base font-medium rounded-full text-white bg-surface-dark hover:bg-surface-highlight transition-all duration-300 md:text-lg"
+                    href="#">
+                    <span class="material-icons mr-2 text-gray-400">play_circle_filled</span>
+                    View Demo
+                </a>
+            </div>
+            <!-- 3D Dashboard -->
+            <div class="mt-20 perspective-container">
+                <div
+                    class="tilted-dashboard relative mx-auto max-w-5xl rounded-xl bg-surface-dark border border-white/10 p-2">
+                    <!-- Fake Browser Chrome -->
+                    <div class="h-8 bg-black/40 rounded-t-lg flex items-center px-4 gap-2 mb-[-1px]">
+                        <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                    </div>
+                    <!-- Dashboard Image Placeholder -->
+                    <div class="relative rounded-b-lg overflow-hidden bg-background-dark aspect-[16/9]">
+                        <img alt="SaaS Dashboard Interface" class="w-full h-full object-cover opacity-90"
+                            data-alt="Dark abstract dashboard interface showing financial graphs and data tables"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNXJZsHOnLMuWEl1ddmrIdSunF3XpqP4SWPIM3G9tJ687XM3pniNG5joYUsh0923XFf_rTbLR4OHu1IE5EqCZYrfMCcAGHBLzqSWmkSrGKRd-weFk6-1Yn1BmGBnBteIJIJqyf15cgftEflACqiABOYvqxAyrwFqhxdfPBWixRE9De7omKu7UohmojtAnKtG1-h5y6FBBuaag1SwLWtblKTQVG_EQrEJKRJrF94glRbXmsXKjqQs4C1Gt5kyYf7YoJknPMNZVWFnY" />
+                        <!-- UI Overlay Simulation -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-60">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Logo Cloud -->
+    <div class="bg-background-dark border-y border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-mono text-gray-500 mb-8 uppercase tracking-widest">Trusted by
+                forward-thinking teams</p>
+            <div
+                class="grid grid-cols-2 gap-8 md:grid-cols-5 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-white flex items-center gap-2"><span
+                            class="material-icons">hexagon</span> AcmeCorp</span>
+                </div>
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-white flex items-center gap-2"><span
+                            class="material-icons">diamond</span> StarkInd</span>
+                </div>
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-white flex items-center gap-2"><span
+                            class="material-icons">bolt</span> BoltShift</span>
+                </div>
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-white flex items-center gap-2"><span
+                            class="material-icons">change_history</span> Pyramid</span>
+                </div>
+                <div class="col-span-1 flex justify-center md:col-span-1">
+                    <span class="text-xl font-bold text-white flex items-center gap-2"><span
+                            class="material-icons">waves</span> Wavely</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bento Grid Features Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Everything you need to <span
+                        class="text-primary">scale</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Powerful features designed for the modern financial stack.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+                <!-- Card 1: Real-time Analytics (Large) -->
+                <div
+                    class="lg:col-span-2 row-span-1 bg-surface-dark border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-primary/30 transition-colors duration-300">
+                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-icons text-9xl text-primary">ssid_chart</span>
+                    </div>
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 text-primary">
+                                <span class="material-icons">analytics</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Real-time Analytics</h3>
+                            <p class="text-gray-400 max-w-sm">Watch your revenue streams in real-time with millisecond
+                                precision updates.</p>
+                        </div>
+                        <!-- Mini Chart Visualization -->
+                        <div class="mt-6 h-32 w-full flex items-end justify-between gap-2 px-2">
+                            <div
+                                class="w-full bg-gradient-to-t from-primary/5 to-transparent rounded-t h-[40%] group-hover:h-[60%] transition-all duration-500 ease-out border-t border-primary/20">
+                            </div>
+                            <div
+                                class="w-full bg-gradient-to-t from-primary/10 to-transparent rounded-t h-[70%] group-hover:h-[50%] transition-all duration-500 ease-out delay-75 border-t border-primary/40">
+                            </div>
+                            <div
+                                class="w-full bg-gradient-to-t from-primary/20 to-transparent rounded-t h-[50%] group-hover:h-[80%] transition-all duration-500 ease-out delay-100 border-t border-primary/60">
+                            </div>
+                            <div
+                                class="w-full bg-gradient-to-t from-primary/10 to-transparent rounded-t h-[80%] group-hover:h-[65%] transition-all duration-500 ease-out delay-150 border-t border-primary/40">
+                            </div>
+                            <div
+                                class="w-full bg-gradient-to-t from-primary/5 to-transparent rounded-t h-[60%] group-hover:h-[90%] transition-all duration-500 ease-out delay-200 border-t border-primary/20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2: Global Card (Tall) -->
+                <div
+                    class="lg:col-span-1 row-span-1 lg:row-span-2 bg-surface-dark border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-primary/30 transition-colors duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-0"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4 text-purple-400">
+                            <span class="material-icons">credit_card</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Border-less Spending</h3>
+                        <p class="text-gray-400 mb-8">Virtual and physical cards for your entire team.</p>
+                        <!-- Card Visual -->
+                        <div class="mt-auto relative transform group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="aspect-[1.586/1] w-full rounded-2xl bg-gradient-to-br from-gray-800 to-black border border-white/10 p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                                <!-- Card Shine -->
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000">
+                                </div>
+                                <div class="flex justify-between items-start">
+                                    <div class="text-white font-bold tracking-wider">LEDGERLY</div>
+                                    <span class="material-icons text-white/50">contactless</span>
+                                </div>
+                                <div>
+                                    <div class="text-white/80 font-mono text-lg tracking-widest mb-2">•••• •••• ••••
+                                        4289</div>
+                                    <div class="flex justify-between items-end">
+                                        <div class="text-xs text-white/50 font-mono">JOHN FOUNDER</div>
+                                        <div class="w-8 h-5 bg-white/20 rounded flex items-center justify-center">
+                                            <div class="w-4 h-4 rounded-full bg-red-500/80 -mr-2"></div>
+                                            <div class="w-4 h-4 rounded-full bg-yellow-500/80"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3: Multi-currency -->
+                <div
+                    class="lg:col-span-1 row-span-1 bg-surface-dark border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-primary/30 transition-colors duration-300">
+                    <div class="relative z-10">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 text-blue-400">
+                            <span class="material-icons">currency_exchange</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">150+ Currencies</h3>
+                        <p class="text-gray-400 text-sm">Hold, convert, and send money globally.</p>
+                        <div class="mt-6 flex gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white border border-white/10 text-xs font-mono">
+                                $</div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white border border-white/10 text-xs font-mono">
+                                €</div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white border border-white/10 text-xs font-mono">
+                                £</div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-surface-highlight flex items-center justify-center text-gray-400 border border-white/5 text-xs font-mono">
+                                +</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4: Fast Payouts -->
+                <div
+                    class="lg:col-span-1 row-span-1 bg-surface-dark border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-primary/30 transition-colors duration-300 flex flex-col justify-center">
+                    <div class="relative z-10 text-center">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-xl bg-green-500/10 flex items-center justify-center mb-4 text-green-400">
+                            <span class="material-icons">bolt</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Instant Payouts</h3>
+                        <div
+                            class="text-5xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400 my-2">
+                            &lt; 60s
+                        </div>
+                        <p class="text-gray-400 text-sm">Funds settled to your account instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Simple, transparent pricing</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">No hidden fees. Scale as you grow.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <!-- Starter Plan -->
+                <div
+                    class="bg-surface-dark border border-white/5 rounded-3xl p-8 flex flex-col h-full hover:bg-surface-highlight/30 transition-colors">
+                    <h3 class="text-lg font-medium text-gray-300">Starter</h3>
+                    <div class="mt-4 flex items-baseline text-white">
+                        <span class="text-4xl font-bold tracking-tight">$0</span>
+                        <span class="ml-1 text-xl text-gray-500">/mo</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-sm">Perfect for freelancers and solo founders just starting out.
+                    </p>
+                    <ul class="mt-8 space-y-4 flex-1">
+                        <li class="flex items-center text-gray-300 text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Up to $5k monthly volume
+                        </li>
+                        <li class="flex items-center text-gray-300 text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            1 Virtual Card
+                        </li>
+                        <li class="flex items-center text-gray-300 text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Basic Analytics
+                        </li>
+                    </ul>
+                    <a class="mt-8 block w-full bg-white/5 border border-white/10 rounded-full py-3 px-4 text-center text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                        href="#">
+                        Get Started
+                    </a>
+                </div>
+                <!-- Pro Plan (Popular) -->
+                <div
+                    class="relative bg-surface-dark border border-primary/50 rounded-3xl p-8 flex flex-col h-full transform md:scale-110 shadow-[0_0_40px_-10px_rgba(100,252,242,0.15)] z-10">
+                    <div class="absolute top-0 right-0 -mt-3 -mr-3">
+                        <span
+                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-primary text-background-dark uppercase tracking-wide">
+                            Most Popular
+                        </span>
+                    </div>
+                    <h3 class="text-lg font-medium text-primary">Pro</h3>
+                    <div class="mt-4 flex items-baseline text-white">
+                        <span class="text-5xl font-bold tracking-tight">$29</span>
+                        <span class="ml-1 text-xl text-gray-500">/mo</span>
+                    </div>
+                    <p class="mt-4 text-gray-300 text-sm">For growing startups that need more power and flexibility.</p>
+                    <ul class="mt-8 space-y-4 flex-1">
+                        <li class="flex items-center text-white text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Up to $100k monthly volume
+                        </li>
+                        <li class="flex items-center text-white text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Unlimited Virtual Cards
+                        </li>
+                        <li class="flex items-center text-white text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Advanced Analytics &amp; API
+                        </li>
+                        <li class="flex items-center text-white text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Priority Support
+                        </li>
+                    </ul>
+                    <a class="mt-8 block w-full bg-primary rounded-full py-3 px-4 text-center text-sm font-bold text-background-dark hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20"
+                        href="#">
+                        Start Free Trial
+                    </a>
+                </div>
+                <!-- Enterprise Plan -->
+                <div
+                    class="bg-surface-dark border border-white/5 rounded-3xl p-8 flex flex-col h-full hover:bg-surface-highlight/30 transition-colors">
+                    <h3 class="text-lg font-medium text-gray-300">Enterprise</h3>
+                    <div class="mt-4 flex items-baseline text-white">
+                        <span class="text-4xl font-bold tracking-tight">Custom</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-sm">For large scale organizations requiring tailored solutions.
+                    </p>
+                    <ul class="mt-8 space-y-4 flex-1">
+                        <li class="flex items-center text-gray-300 text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Unlimited volume
+                        </li>
+                        <li class="flex items-center text-gray-300 text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Custom Contracts
+                        </li>
+                        <li class="flex items-center text-gray-300 text-sm">
+                            <span class="material-icons text-primary text-sm mr-3">check_circle</span>
+                            Dedicated Account Manager
+                        </li>
+                    </ul>
+                    <a class="mt-8 block w-full bg-white/5 border border-white/10 rounded-full py-3 px-4 text-center text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                        href="#">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-background-dark pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-2 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div
+                            class="w-6 h-6 rounded bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-background-dark font-bold text-xs">
+                            L</div>
+                        <span class="font-bold text-lg text-white">Ledgerly</span>
+                    </div>
+                    <p class="text-gray-500 text-sm mb-4">
+                        Empowering the next generation of founders with modern financial tools.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a class="text-gray-400 hover:text-white transition-colors" href="#"><i
+                                class="material-icons text-lg">public</i></a>
+                        <a class="text-gray-400 hover:text-white transition-colors" href="#"><i
+                                class="material-icons text-lg">alternate_email</i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">Features</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Integrations</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">API Docs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600 text-xs">© 2023 Ledgerly Inc. All rights reserved.</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span class="text-xs text-gray-500 font-mono">Systems Operational</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

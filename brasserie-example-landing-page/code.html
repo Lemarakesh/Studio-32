@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>L'Atelier Belge - Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#f2b90d",
+            "background-light": "#f8f8f5", // Not used much given the dark theme requirement, but good for fallback
+            "background-dark": "#1a1a1a",
+            "surface-dark": "#242424",
+            "text-light": "#f3f4f6",
+            "bronze-accent": "#d4af37",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"],
+            "body": ["Plus Jakarta Sans", "sans-serif"],
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Utilities for GSAP hooks as requested in plan */
+    .gsap-reveal {
+      opacity: 1;
+      /* Default state for non-js environments */
+    }
+
+    /* Custom scrollbar for webkit */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f2b90d;
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark font-display text-text-light antialiased selection:bg-primary selection:text-black overflow-x-hidden">
+  <!-- Back Button -->
+  <a href="../code.html"
+    class="fixed top-24 left-4 z-[60] bg-[#1a1a1a]/80 backdrop-blur text-white p-3 rounded-full hover:bg-primary hover:text-black transition-all duration-300 group shadow-lg border border-white/10 flex items-center justify-center">
+    <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+  </a>
+  <!-- Sticky Navbar -->
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 bg-[#1a1a1a]/90 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Mobile Menu Button -->
+        <div class="flex-shrink-0 flex items-center">
+          <button class="text-white hover:text-primary transition-colors p-2 rounded-md focus:outline-none">
+            <span class="material-symbols-outlined !text-[28px]">menu</span>
+          </button>
+        </div>
+        <!-- Logo -->
+        <div class="flex-1 flex justify-center">
+          <a class="text-white text-xl font-bold tracking-[0.1em] uppercase hover:text-primary transition-colors duration-300"
+            href="#">
+            L'Atelier
+          </a>
+        </div>
+        <!-- CTA & Lang -->
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex text-xs font-bold text-gray-400 gap-2">
+            <span class="text-primary cursor-pointer">FR</span>
+            <span class="hover:text-white cursor-pointer transition-colors">NL</span>
+            <span class="hover:text-white cursor-pointer transition-colors">EN</span>
+          </div>
+          <button
+            class="bg-primary hover:bg-yellow-400 text-black text-xs sm:text-sm font-bold py-2 px-3 sm:px-4 rounded transition-all duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(242,185,13,0.2)]">
+            <span class="hidden sm:inline">Réserver une table</span>
+            <span class="sm:hidden">Réserver</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <header class="relative w-full h-screen min-h-[600px] overflow-hidden flex items-center justify-center gsap-reveal">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#1a1a1a] z-10"></div>
+      <div
+        class="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105 transition-transform duration-[10s] ease-out hover:scale-100"
+        data-alt="Dark moody restaurant interior with warm lighting"
+        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtkAjzDrK4mYFeOPqmy8Wzob88v--nlcoISWF3oX6LeXI1piI7uYWgoyCRBIrDO0Q4GmBLXnq277mY-bbXiwXXcHmsUdXrnO-gAMt6ZCF30J-Or3jKIWatIqZfBEFVv5gCBrPhIVqC8c58ksLgCLZe08jZ6Cswv9KDmDa1QJRPcQqQfQXm5eO7wwrY40aAf7gRKsAHoyLRjzlQ26iRmkuOnNZSwrMNJCYP4Qo7r6Pm9ORLyiT_fhlgdXPqEuF5m7yh5i0JfrXkEuI_');">
+      </div>
+    </div>
+    <!-- Content -->
+    <div class="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center gap-6 mt-16">
+      <div class="inline-block border border-primary/30 rounded-full px-4 py-1 bg-black/30 backdrop-blur-sm mb-2">
+        <span class="text-primary text-xs uppercase tracking-[0.2em] font-bold">Bruxelles Centre</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+        L'Art de la <br />
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#ffeebb] to-primary">Bistronomie</span>
+      </h1>
+      <p class="text-gray-300 text-sm sm:text-lg max-w-lg mx-auto leading-relaxed font-light tracking-wide">
+        Une cuisine belge authentique au cœur de la ville, où tradition et modernité se rencontrent dans une atmosphère
+        chaleureuse.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
+        <button
+          class="bg-primary hover:bg-yellow-400 text-background-dark font-bold text-base py-3 px-8 rounded shadow-lg transition-all duration-300 w-full sm:w-auto transform hover:-translate-y-1">
+          Réserver une table
+        </button>
+        <button
+          class="bg-transparent border border-white/20 hover:border-white text-white font-medium text-base py-3 px-8 rounded backdrop-blur-sm transition-all duration-300 w-full sm:w-auto hover:bg-white/5">
+          Découvrir le menu
+        </button>
+      </div>
+    </div>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce text-white/50">
+      <span class="material-symbols-outlined !text-3xl">keyboard_arrow_down</span>
+    </div>
+  </header>
+  <!-- Menu Section: Nos Incontournables -->
+  <section class="py-20 px-4 bg-[#1a1a1a] relative group/menu">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 gsap-reveal">
+        <span class="text-primary text-xs font-bold uppercase tracking-[0.15em]">À la carte</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mt-3 mb-6 tracking-tight">Nos Incontournables</h2>
+        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-12">
+        <!-- Card 1 -->
+        <div
+          class="flex flex-col sm:flex-row gap-5 p-4 rounded-xl border border-white/5 hover:border-primary/30 hover:bg-white/5 transition-all duration-500 group gsap-reveal">
+          <div class="w-full sm:w-32 h-48 sm:h-32 rounded-lg bg-cover bg-center shrink-0 overflow-hidden"
+            data-alt="Close up of golden shrimp croquettes with lemon"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuASq9uhMfOUJvk0xctXizO6bC6H4ETPf2bOZO2bvXG_4BjdurNa-Uapa7c568KBoOr6-jSeR6diAQaeRjSsmssxaPoPBHZa2-LOf4xeB4xhgs3E1RJNlzgLLo7Z4_1st-5DXL0bF-lssEj6PD4eZy1_sFyUmFkEXeYgU7pb-Q7FLi9jHbJy3KIxfFByHtMAPrJkUP0zwH6Ftoom5Qm-3Ig6bzuaRoeJq_oWH4i6tjbF8Mh934VMhKKknAApezZB5VF_q0pNkqNSP73_');">
+          </div>
+          <div class="flex flex-col flex-1 justify-between py-1">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Croquettes aux
+                  Crevettes</h3>
+                <span class="text-primary font-bold text-lg">18€</span>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                Crevettes grises de la Mer du Nord, persil frit, citron frais et notre mayonnaise maison.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-500 uppercase tracking-wider font-medium">
+              <span class="px-2 py-1 bg-white/5 rounded">Entrée</span>
+              <span class="px-2 py-1 bg-white/5 rounded">Populaire</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div
+          class="flex flex-col sm:flex-row gap-5 p-4 rounded-xl border border-white/5 hover:border-primary/30 hover:bg-white/5 transition-all duration-500 group gsap-reveal">
+          <div class="w-full sm:w-32 h-48 sm:h-32 rounded-lg bg-cover bg-center shrink-0 overflow-hidden"
+            data-alt="Traditional Flemish beef stew in dark beer sauce"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDome02lI_wP3XxXkNvcPczgT_iTpSO8tn08yZarW7T3qMamCOxbKzPAyPsSxSJf5CEi4JW3fLfsVjGnA-N2rP6qQYtnXAW_Gb_dQ3u5p_rmv76xeulWfdlHsBCr73i9JWPS9jS2EpciwfMRjjUXotNCBhING-53uT73bRBnAKdpwyJxbm0kAEn6kd7ZuRV9-HdrizLHzNnIh8__jKnE5BtNXjTsetZ-XTJS0fOO6i6YV47lXzI2IZXXTvww1qQNeZSXxiCzlv1y7d_');">
+          </div>
+          <div class="flex flex-col flex-1 justify-between py-1">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Carbonnades
+                  Flamandes</h3>
+                <span class="text-primary font-bold text-lg">24€</span>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                Mijotées à la bière brune d'abbaye, pain d'épices, servies avec des frites fraîches.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-500 uppercase tracking-wider font-medium">
+              <span class="px-2 py-1 bg-white/5 rounded">Plat</span>
+              <span class="px-2 py-1 bg-white/5 rounded">Signature</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div
+          class="flex flex-col sm:flex-row gap-5 p-4 rounded-xl border border-white/5 hover:border-primary/30 hover:bg-white/5 transition-all duration-500 group gsap-reveal">
+          <div class="w-full sm:w-32 h-48 sm:h-32 rounded-lg bg-cover bg-center shrink-0 overflow-hidden"
+            data-alt="Meatballs in rich sauce"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOC-E9skSOnwg6O5QZn0E-KC2QyzKZZDCBQIbIyl8cmXvOS5QWxlvCQ-YuY_LO4vUASTQxAY-C38U7WiASDT5mUBzA-sZRvh2xuQpnSI3YZVtwUi1uUE4xkpP0q1DaXyA7ZbqWCzS6s-FgHXq43tXkRABqxhTILy_z2SlEC8s0EZJzjq-N7FD_GQn65yHEyCklfV2b0E4bCCRrERlPUri-Q-AHvF-ReJIG4ZH7vyqKxcoNodQc4DcV-GK2xCqAhWp2mU63dF9aF_Gs');">
+          </div>
+          <div class="flex flex-col flex-1 justify-between py-1">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Boulets à la
+                  Liégeoise</h3>
+                <span class="text-primary font-bold text-lg">21€</span>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                Sauce lapin au vrai Sirop de Liège, oignons caramélisés et frites croustillantes.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-500 uppercase tracking-wider font-medium">
+              <span class="px-2 py-1 bg-white/5 rounded">Plat</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div
+          class="flex flex-col sm:flex-row gap-5 p-4 rounded-xl border border-white/5 hover:border-primary/30 hover:bg-white/5 transition-all duration-500 group gsap-reveal">
+          <div class="w-full sm:w-32 h-48 sm:h-32 rounded-lg bg-cover bg-center shrink-0 overflow-hidden"
+            data-alt="Puff pastry vol-au-vent with creamy chicken sauce"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAc1Gk1Zr6hapRswA0fRUOKNUegM6ao3lmcsPUPQMvjt3h915B44p3_Ea1PzqELQGfTZ_F1xvdYQYDLr7tjkHgYRmKvzOiKJk3wRHKlDJuqf3wIGyboRqfHQeqS3f-iFFsQTJ9sa8VmtzXdrUAGMhO9h266yZRZsrAnxFT3iATNW4GYhBqY8MafIgwMumOb68QhRgATeAI9z0DRfHz79mN41M26e2uh58AeprFUqZVdYL9uzElu2acIAeGVslSKf9vr8aHOd0EhRbXa');">
+          </div>
+          <div class="flex flex-col flex-1 justify-between py-1">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Vol-au-Vent Royal
+                </h3>
+                <span class="text-primary font-bold text-lg">26€</span>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                Feuilleté pur beurre, poulet fermier, ris de veau et sauce mousseline onctueuse.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-500 uppercase tracking-wider font-medium">
+              <span class="px-2 py-1 bg-white/5 rounded">Plat</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <a class="inline-flex items-center gap-2 text-white hover:text-primary transition-colors border-b border-primary/50 pb-1 text-sm font-bold uppercase tracking-widest"
+          href="#">
+          Voir toute la carte
+          <span class="material-symbols-outlined !text-lg">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Gallery Section (Asymmetrical Parallax) -->
+  <section class="py-20 bg-[#151515] relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]"></div>
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="mb-12 gsap-reveal">
+        <span class="text-primary text-xs font-bold uppercase tracking-[0.15em]">L'Ambiance</span>
+        <h2 class="text-3xl font-bold text-white mt-2">L'Esprit Atelier</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+        <!-- Large Image -->
+        <div class="col-span-2 row-span-2 rounded-xl overflow-hidden relative group cursor-pointer gsap-reveal">
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10 duration-500"></div>
+          <div
+            class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 parallax-img"
+            data-alt="Chef plating a dish with precision in a busy kitchen"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjqD7C5yoHEmqouaUtHauLNyZymkaDft3CEK4cGv7j6gItU2VUtjDeCzG6ix-eeKSKaz_ZTKjNA6y7zQX3T64EYwMihvrH_efBAl6P4piGItUFSMw82SVh045Cu-Perb1x3YtDWwAMo95XIFTnKssfT1uC8i-1ugE5ur2_Jpuj0PmIRPAOXeWCKsCg6MuYGM1s7dmvRmK-vBobrAGz4GoMOv6KEPcnuLJC4UH-6blQH6qeT3vo2KzV0MCqe0SUIQuu_bPPTY0eDHo_');">
+          </div>
+        </div>
+        <!-- Tall Image -->
+        <div
+          class="col-span-1 row-span-2 rounded-xl overflow-hidden relative group cursor-pointer mt-8 md:mt-0 gsap-reveal">
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10 duration-500"></div>
+          <div
+            class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 parallax-img"
+            data-alt="Close up of wine being poured into a glass"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXs2vDEJgt11RvhdnDe3P0Xs1lCphIAw_I6q4ddKhcnIW7Qhgt59ESm6XccGJsd0p0frlBE28g2mNeWaAKas3Bs5UbuHA5ehQmgv9B0DqPmBFVjD2kBR2nBYpN11QUKzfjzjVv1hcl_LyXRN2BHfj3n_JzH-oarATxhZ8nSo9ck-QOLnM0tGV73bdPMZAuj7LkgSkt1dwx0y8O61RKYJIub10f8Gt83ZwGbeoaIefwFGimOdOD6diOcNIdGUWGnCz9hZXSxZociRfe');">
+          </div>
+        </div>
+        <!-- Small Image 1 -->
+        <div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group cursor-pointer gsap-reveal">
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10 duration-500"></div>
+          <div
+            class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 parallax-img"
+            data-alt="Warm industrial chic interior of the restaurant with hanging lights"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBey2ZQ7-w33ZKbp9Eap1AMPkV-k0Cie4UAOCi6hNjoCQnckDXPWdqmCv_Td3ZXG2HM5yxT-H5gZZJFtPbgMXjJHXVWA0sRwUq4bm8ziW818Dl8q939LR0R98PLvg_GuLhGoURsrlFzFybjbu_AyO2gWXmDJIS6DWnhsu4yisU6jm73CTpChEFGJmhcr0CyCO0acyyJfN-MYLHwXU-oj3v6wp6PD5O-TnprytEz84ukemMQLIgTWuhTurK-TaLwaxmM7b4UOnJB0W7w');">
+          </div>
+        </div>
+        <!-- Small Image 2 -->
+        <div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group cursor-pointer gsap-reveal">
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10 duration-500"></div>
+          <div
+            class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 parallax-img"
+            data-alt="Detail of bronze cutlery on a dark wooden table"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwEffQwRa8rqYbdRHPBGihImS6WAUlgCVFsltKGkua_safEhSI0b0nYEGeo1o5gn-fmH3LYirkRBMqiMHyf8hwZRCZoBJ62TimS9OteWhjdxWQZv3BvRoGTVs09fB2NylA5yrfKTsKtNEq3L907Yk-Niu1-bHAia8NRZBQoWh2RWLEYIY0ajEnrhrMrl9ZbGo2EIViGJFkk7Kjg3BUuzJ5cRL5DDB1tE8Mmjg-QeZt4nqFjvYC6AdXQeS1ExUDWXZqL7m4eNqn8aiT');">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-[#111] pt-16 pb-8 border-t border-white/5 text-center md:text-left">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <!-- Brand -->
+        <div class="flex flex-col items-center md:items-start gap-4">
+          <h2 class="text-2xl font-bold tracking-widest uppercase text-white">L'Atelier</h2>
+          <p class="text-gray-400 text-sm max-w-xs leading-relaxed">
+            Bistronomie belge authentique. Des produits locaux, une cuisine de cœur.
+          </p>
+          <div class="flex gap-4 mt-2">
+            <a class="text-gray-400 hover:text-primary transition-colors" href="#"><i
+                class="fa-brands fa-instagram text-xl"></i></a>
+            <!-- FontAwesome placeholder logic if needed, using spans below instead -->
+            <span class="text-gray-400 hover:text-primary cursor-pointer transition-colors font-bold text-sm">IG</span>
+            <span class="text-gray-400 hover:text-primary cursor-pointer transition-colors font-bold text-sm">FB</span>
+            <span class="text-gray-400 hover:text-primary cursor-pointer transition-colors font-bold text-sm">TA</span>
+          </div>
+        </div>
+        <!-- Contact & Hours -->
+        <div class="flex flex-col items-center md:items-start gap-2 text-sm text-gray-300">
+          <h3 class="text-primary font-bold uppercase tracking-wider mb-2">Infos Pratiques</h3>
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-lg">location_on</span>
+            <span>Rue de la Paix 24, 1000 Bruxelles</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-lg">call</span>
+            <span>+32 2 555 01 23</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-lg">mail</span>
+            <span>info@latelierbelge.be</span>
+          </div>
+        </div>
+        <!-- Opening Hours -->
+        <div class="flex flex-col items-center md:items-start gap-2 text-sm text-gray-300">
+          <h3 class="text-primary font-bold uppercase tracking-wider mb-2">Horaires</h3>
+          <div class="flex justify-between w-48 md:w-40 border-b border-white/5 pb-1">
+            <span>Mar - Ven</span>
+            <span class="font-medium text-white">18h - 23h</span>
+          </div>
+          <div class="flex justify-between w-48 md:w-40 border-b border-white/5 pb-1">
+            <span>Samedi</span>
+            <span class="font-medium text-white">18h - 00h</span>
+          </div>
+          <div class="flex justify-between w-48 md:w-40 text-gray-500">
+            <span>Dim - Lun</span>
+            <span>Fermé</span>
+          </div>
+        </div>
+      </div>
+      <!-- Bottom Footer -->
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-gray-600">
+          © 2024 L'Atelier Belge. Tous droits réservés.
+        </p>
+        <div class="flex gap-3 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300">
+          <!-- Fake payment icons using divs -->
+          <div class="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-gray-400">
+            VISA</div>
+          <div class="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-gray-400">
+            MC</div>
+          <div class="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-gray-400">
+            BC</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- Scroll Reveals (The "Drift") for Menu Cards ---
+      // Target: Menu Cards
+      const menuCards = gsap.utils.toArray(".group:has(.bg-cover)"); // Targeting the cards specifically
+
+      // Ensure opacity is 0 initially via CSS or GSAP set to avoid flash
+      gsap.set(menuCards, { opacity: 0, y: 30 });
+
+      ScrollTrigger.batch(menuCards, {
+        start: "top 85%",
+        onEnter: batch => gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          stagger: 0.1,
+          ease: "power2.out",
+          overwrite: true
+        })
+      });
+
+      // --- Headline Split (Refined for "Appearing Effect") ---
+      const headline = document.querySelector("h1");
+      if (headline) {
+        gsap.set(headline, { autoAlpha: 1 }); // Ensure visible
+
+        const mainTitleNodes = headline.childNodes;
+        const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+        // 1. "L'Art de la" (First text node)
+        // We wrap it in a div to animate it
+        const firstPart = mainTitleNodes[0];
+        if (firstPart && firstPart.nodeType === 3) {
+          const wrapper = document.createElement("div");
+          wrapper.style.display = "inline-block";
+          wrapper.textContent = firstPart.textContent;
+          headline.replaceChild(wrapper, firstPart);
+
+          // Animation: Float up + Rotate
+          gsap.fromTo(wrapper,
+            { opacity: 0, y: 50, rotation: 5 },
+            { opacity: 1, y: 0, rotation: 0, duration: 0.7 } // Faster duration (was 1.2)
+          );
+        }
+
+        // 2. "Bistronomie" (The span)
+        const bistronomieSpan = headline.querySelector("span");
+        if (bistronomieSpan) {
+          // Need to set inline-block to allow transform
+          gsap.set(bistronomieSpan, { display: "inline-block" });
+
+          // Animation: Float up + Rotate (Staggered slightly after first part)
+          gsap.fromTo(bistronomieSpan,
+            { opacity: 0, y: 50, rotation: 5 },
+            { opacity: 1, y: 0, rotation: 0, duration: 0.7, delay: 0.1 } // Faster duration (was 1.2, delay 0.2)
+          );
+        }
+      }
+
+    });
+  </script>
+</body>
+
+</html>
