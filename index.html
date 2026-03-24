@@ -141,6 +141,16 @@
             opacity: 1;
             transition: opacity 0.3s ease;
         }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+            will-change: transform;
+        }
 
         /* ── Mobile-specific overrides ─────────────────── */
         @media (max-width: 767px) {
@@ -265,32 +275,39 @@
             </div>
         </section>
         <section class="py-12 border-y border-white/5 bg-black/20 backdrop-blur-sm overflow-hidden relative">
-            <div
-                class="marquee-track flex gap-16 items-center whitespace-nowrap w-max opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-                <!-- Original Content -->
-                <span class="text-xl font-bold tracking-widest">Studio 32</span>
-                <span class="text-xl font-serif italic">Studio 32</span>
-                <span class="text-xl font-mono">Studio 32</span>
-                <span class="text-xl font-bold">Studio 32</span>
-                <span class="text-xl font-light tracking-[0.3em]">Studio 32</span>
-                <span class="text-xl font-bold tracking-widest">Studio 32</span>
-                <span class="text-xl font-serif italic">Studio 32</span>
-                <!-- Duplicate for Loop -->
-                <span class="text-xl font-bold tracking-widest">Studio 32</span>
-                <span class="text-xl font-serif italic">Studio 32</span>
-                <span class="text-xl font-mono">Studio 32</span>
-                <span class="text-xl font-bold">Studio 32</span>
-                <span class="text-xl font-light tracking-[0.3em]">Studio 32</span>
-                <span class="text-xl font-bold tracking-widest">Studio 32</span>
-                <span class="text-xl font-serif italic">Studio 32</span>
-                <!-- Triplicate for Safety on Wide Screens -->
-                <span class="text-xl font-bold tracking-widest">Studio 32</span>
-                <span class="text-xl font-serif italic">Studio 32</span>
-                <span class="text-xl font-mono">Studio 32</span>
-                <span class="text-xl font-bold">Studio 32</span>
-                <span class="text-xl font-light tracking-[0.3em]">Studio 32</span>
-                <span class="text-xl font-bold tracking-widest">Studio 32</span>
-                <span class="text-xl font-serif italic">Studio 32</span>
+            <div class="flex overflow-hidden w-full opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="animate-marquee flex gap-16 pr-16 shrink-0 items-center whitespace-nowrap">
+                    <span class="text-xl font-bold tracking-widest">Studio 32</span>
+                    <span class="text-xl font-serif italic">Studio 32</span>
+                    <span class="text-xl font-mono">Studio 32</span>
+                    <span class="text-xl font-bold">Studio 32</span>
+                    <span class="text-xl font-light tracking-[0.3em]">Studio 32</span>
+                    <span class="text-xl font-bold tracking-widest">Studio 32</span>
+                    <span class="text-xl font-serif italic">Studio 32</span>
+                    <span class="text-xl font-bold tracking-widest">Studio 32</span>
+                    <span class="text-xl font-serif italic">Studio 32</span>
+                    <span class="text-xl font-mono">Studio 32</span>
+                    <span class="text-xl font-bold">Studio 32</span>
+                    <span class="text-xl font-light tracking-[0.3em]">Studio 32</span>
+                    <span class="text-xl font-bold tracking-widest">Studio 32</span>
+                    <span class="text-xl font-serif italic">Studio 32</span>
+                </div>
+                <div class="animate-marquee flex gap-16 pr-16 shrink-0 items-center whitespace-nowrap" aria-hidden="true">
+                    <span class="text-xl font-bold tracking-widest">Studio 32</span>
+                    <span class="text-xl font-serif italic">Studio 32</span>
+                    <span class="text-xl font-mono">Studio 32</span>
+                    <span class="text-xl font-bold">Studio 32</span>
+                    <span class="text-xl font-light tracking-[0.3em]">Studio 32</span>
+                    <span class="text-xl font-bold tracking-widest">Studio 32</span>
+                    <span class="text-xl font-serif italic">Studio 32</span>
+                    <span class="text-xl font-bold tracking-widest">Studio 32</span>
+                    <span class="text-xl font-serif italic">Studio 32</span>
+                    <span class="text-xl font-mono">Studio 32</span>
+                    <span class="text-xl font-bold">Studio 32</span>
+                    <span class="text-xl font-light tracking-[0.3em]">Studio 32</span>
+                    <span class="text-xl font-bold tracking-widest">Studio 32</span>
+                    <span class="text-xl font-serif italic">Studio 32</span>
+                </div>
             </div>
         </section>
         <section class="relative py-16 md:py-32 px-4 md:px-6" id="work">
@@ -699,14 +716,6 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Continuous Marquee Animation
-        gsap.to(".marquee-track", {
-            xPercent: -33.33, // Move 1/3 of the width (since we have 3 sets)
-            ease: "linear",
-            duration: 20, // Adjust speed here
-            repeat: -1
-        });
-
         // Hero Section Animations
         const tl = gsap.timeline();
 
@@ -1069,11 +1078,8 @@
             data.source = 'Landing Page V2';
 
             try {
-                // REPLACE WITH YOUR N8N WEBHOOK URL
-                // Example: 'https://n8n.your-domain.com/webhook/...'
-                const WEBHOOK_URL = 'http://localhost:5678/webhook/booking';
-
-                // UNCOMMENT BELOW TO ENABLE REAL SENDING
+                // Pointing to n8n Test Webhook so you can test the automation while building it
+                const WEBHOOK_URL = 'http://localhost:5678/webhook-test/booking';
 
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
@@ -1081,10 +1087,7 @@
                     body: JSON.stringify(data)
                 });
 
-                if (!response.ok) throw new Error('Network error');
-
-                // Simulate success for demo
-                // await new Promise(resolve => setTimeout(resolve, 1500));
+                if (!response.ok) throw new Error(`Erreur serveur: ${response.status}`);
 
                 // Success State
                 form.classList.add('hidden');
@@ -1092,11 +1095,12 @@
 
             } catch (error) {
                 console.error('Error:', error);
-                submitBtn.innerHTML = 'Erreur lors de l\'envoi';
+                alert("Le formulaire n'a pas pu être envoyé à n8n.\n\nAssurez-vous que:\n1. Votre workflow n8n est ouvert et écoute (bouton 'Listen for Test Event').\n2. Le noeud Webhook est configuré sur POST et sur le chemin 'booking'.\n\nSi vous avez déjà activé le workflow, changez l'URL dans le code en '/webhook/' au lieu de '/webhook-test/'.");
+                submitBtn.innerHTML = 'Erreur de connexion n8n';
                 setTimeout(() => {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalBtnText;
-                }, 3000);
+                }, 4000);
             }
         });
     </script>
