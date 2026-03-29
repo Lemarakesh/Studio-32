@@ -1076,15 +1076,12 @@
             data.source = 'Landing Page V2';
 
             try {
-                // Pointing to Live n8n Tunnel
-                const WEBHOOK_URL = 'https://a.lttle-keys-grin.loca.lt/webhook/booking';
+                // Pointing to our Vercel API Route to bypass all CORS strictly
+                const WEBHOOK_URL = '/api/booking';
 
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Bypass-Tunnel-Reminder': 'true' // Required to bypass the localtunnel warning screen for API requests
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
 
