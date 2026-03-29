@@ -1093,12 +1093,15 @@
             data.source = 'Landing Page V2';
 
             try {
-                // Pointing to n8n Production Webhook
-                const WEBHOOK_URL = 'http://localhost:5678/webhook/booking';
+                // Pointing to Live n8n Tunnel
+                const WEBHOOK_URL = 'https://a.lttle-keys-grin.loca.lt/webhook/booking';
 
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Bypass-Tunnel-Reminder': 'true' // Required to bypass the localtunnel warning screen for API requests
+                    },
                     body: JSON.stringify(data)
                 });
 
