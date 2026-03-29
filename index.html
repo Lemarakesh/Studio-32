@@ -1093,8 +1093,8 @@
             data.source = 'Landing Page V2';
 
             try {
-                // Pointing to n8n Test Webhook so you can test the automation while building it
-                const WEBHOOK_URL = 'http://localhost:5678/webhook-test/booking';
+                // Pointing to n8n Production Webhook
+                const WEBHOOK_URL = 'http://localhost:5678/webhook/booking';
 
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
