@@ -10,6 +10,11 @@
     <meta name="keywords"
         content="création site web belgique, site internet pas cher wallonie, webmaster namur, site vitrine indépendant, studio 32 web design, site internet pme belgique" />
     <meta name="author" content="Studio 32" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://studio-32.vercel.app/landingpage2.html" />
+    <link rel="alternate" hreflang="fr" href="https://studio-32.vercel.app/landingpage2.html" />
+    <link rel="alternate" hreflang="en" href="https://studio-32.vercel.app/en/landingpage2.html" />
+    <link rel="alternate" hreflang="x-default" href="https://studio-32.vercel.app/landingpage2.html" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -225,6 +230,15 @@
 <body
     class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-display selection:bg-primary selection:text-white overflow-x-hidden relative">
     <div class="bg-noise"></div>
+    
+    <!-- Language Toggle Top Right -->
+    <div class="fixed top-5 md:top-8 right-5 md:right-6 z-50">
+        <a href="en/landingpage2.html" class="glass-nav px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-xs font-medium text-gray-400 hover:text-white transition-colors rounded-full ring-1 ring-white/10 shadow-lg flex items-center gap-2 backdrop-blur-md">
+            <span class="text-white">FR</span>
+            <span class="opacity-30">|</span>
+            <span>EN</span>
+        </a>
+    </div>
 
     <!-- Version Toggle Button (hidden - using landingpage2 as primary) -->
 
@@ -258,9 +272,18 @@
                         <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity">
                         </div>
                     </button>
-                    <p class="mt-4 text-[10px] text-gray-600">Sans engagement • Réponse sous 24h</p>
                 </div>
             </div>
+            <!-- Scroll Indicators (Sides) -->
+            <a href="#work" class="hidden sm:flex absolute bottom-28 lg:bottom-32 left-6 lg:left-12 flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity z-40 cursor-pointer">
+                <span class="text-[9px] tracking-[0.3em] uppercase text-gray-400" style="writing-mode: vertical-rl;">Découvrir</span>
+                <span class="material-icons text-white animate-bounce text-sm mt-2">south</span>
+            </a>
+            <a href="#work" class="hidden sm:flex absolute bottom-28 lg:bottom-32 right-6 lg:right-12 flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity z-40 cursor-pointer">
+                <span class="text-[9px] tracking-[0.3em] uppercase text-gray-400" style="writing-mode: vertical-rl;">Découvrir</span>
+                <span class="material-icons text-white animate-bounce text-sm mt-2">south</span>
+            </a>
+
             <div class="absolute bottom-0 left-0 w-full h-[25vh] opacity-30 pointer-events-none overflow-hidden">
                 <div class="w-full h-full bg-gradient-to-t from-background-dark to-transparent"></div>
             </div>
@@ -428,6 +451,11 @@
                                     class="material-icons text-red-500/50 text-base mt-0.5">remove_circle_outline</span>
                                 <span>Focus sur les métriques vaniteuses, pas le CA</span>
                             </li>
+                            <li class="flex items-start gap-3 text-gray-500 text-sm">
+                                <span
+                                    class="material-icons text-red-500/50 text-base mt-0.5">remove_circle_outline</span>
+                                <span>Micro-gestion stressante et complexité technique</span>
+                            </li>
                         </ul>
                     </div>
                     <div class="p-6 md:p-12 bg-white/5 relative overflow-hidden">
@@ -455,6 +483,10 @@
                             <li class="flex items-start gap-3 text-gray-200 text-sm">
                                 <span class="material-icons text-green-400 text-base mt-0.5" aria-hidden="true">check_circle</span>
                                 <span>Ingénierie axée sur le ROI</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-gray-200 text-sm">
+                                <span class="material-icons text-green-400 text-base mt-0.5" aria-hidden="true">check_circle</span>
+                                <span>Création sans tracas, 100% prise en charge</span>
                             </li>
                         </ul>
                     </div>
@@ -658,7 +690,6 @@
             </a>
             <div class="hidden md:flex items-center">
                 <a class="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors" href="#work">Projets</a>
-                <a class="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors" href="#pricing">Tarifs</a>
                 <a class="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors"
                     href="#contact">Contact</a>
             </div>
