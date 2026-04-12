@@ -897,23 +897,32 @@
             margin-bottom: 7px;
             padding-left: 4px;
         }
-        /* Mobile: scrollable wrapper */
-        #bookingModal .modal-wrapper {
-            width: 100%;
-            max-height: 88vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
+        /* Mobile bar — hidden by default, shown only on small screens */
+        #bookingModal .sidebar-mobile-bar {
+            display: none;
         }
-        #bookingModal .modal-wrapper::-webkit-scrollbar { width: 4px; }
-        #bookingModal .modal-wrapper::-webkit-scrollbar-track { background: transparent; }
-        #bookingModal .modal-wrapper::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
-        /* Desktop: sidebar visible, form scrollable */
-        @media (min-width: 768px) {
-            #bookingModal .modal-wrapper {
-                max-height: unset;
-                overflow-y: unset;
+        @media (max-width: 767px) {
+            #bookingModal .sidebar-mobile-bar {
+                background: #131313;
+                padding: 16px 20px 14px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
             }
+            /* Mobile: scrollable form wrapper */
+            #bookingModal .modal-wrapper {
+                max-height: 82vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+            }
+            #bookingModal .modal-wrapper::-webkit-scrollbar { width: 4px; }
+            #bookingModal .modal-wrapper::-webkit-scrollbar-track { background: transparent; }
+            #bookingModal .modal-wrapper::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
+        }
+        /* Desktop: form scroll */
+        @media (min-width: 768px) {
             #bookingModal .form-scroll {
                 max-height: 68vh;
                 overflow-y: auto;
@@ -923,15 +932,6 @@
             #bookingModal .form-scroll::-webkit-scrollbar-track { background: transparent; }
             #bookingModal .form-scroll::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
         }
-        /* Mobile top bar */
-        #bookingModal .sidebar-mobile-bar {
-            background: #131313;
-            padding: 16px 20px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
     </style>
     <div id="bookingModal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true">
         <!-- Backdrop -->
@@ -939,36 +939,34 @@
 
         <!-- Modal Content -->
         <div class="relative z-10 flex min-h-screen items-center justify-center p-3 md:p-6">
-            <div class="glass-panel modal-glow border-glow-rim w-full max-w-4xl rounded-2xl md:rounded-[2rem] overflow-hidden relative transform transition-all duration-300 scale-95 opacity-0 md:grid md:grid-cols-5" id="bookingModalContent">
+            <div class="glass-panel modal-glow border-glow-rim w-full max-w-4xl rounded-2xl md:rounded-[2rem] overflow-hidden relative transform transition-all duration-300 scale-95 opacity-0 grid grid-cols-1 md:grid-cols-5" id="bookingModalContent">
 
-                <!-- Mobile top bar -->
-                <div class="sidebar-mobile-bar md:hidden">
+                <!-- Mobile top bar (CSS hides this on desktop) -->
+                <div class="sidebar-mobile-bar col-span-1 md:col-span-5">
                     <div>
-                        <span class="text-[#a855f7] font-bold text-[9px] tracking-[0.2em] uppercase block mb-0.5">Phase de D\u00e9couverte</span>
-                        <span class="text-white font-bold text-sm">D\u00e9mo Gratuite MW Design</span>
+                        <span style="color:#a855f7;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:2px">Phase de Découverte</span>
+                        <span style="color:#fff;font-weight:700;font-size:14px">Démo Gratuite MW Design</span>
                     </div>
-                    <button onclick="closeBookingModal()" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
-                        <span class="material-icons text-lg">close</span>
+                    <button onclick="closeBookingModal()" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:#9ca3af;border:none;cursor:pointer">
+                        <span class="material-icons" style="font-size:18px">close</span>
                     </button>
                 </div>
 
-                <!-- Left Sidebar (desktop only) -->
+                <!-- Left Sidebar (desktop only, hidden on mobile via Tailwind) -->
                 <div class="hidden md:flex md:col-span-2 bg-[#131313] p-10 flex-col justify-between relative overflow-hidden">
                     <div class="relative z-10">
-                        <span class="text-[#a855f7] font-bold text-[10px] tracking-[0.2em] uppercase">Phase de D\u00e9couverte</span>
+                        <span class="text-[#a855f7] font-bold text-[10px] tracking-[0.2em] uppercase">Phase de Découverte</span>
                         <h2 class="font-display text-3xl font-extrabold tracking-tight mt-3 leading-tight text-white">
-                            Transformez votre <br/><span class="text-gradient-primary">Vision</span> en R\u00e9alit\u00e9.
+                            Transformez votre <br/><span class="text-gradient-primary">Vision</span> en Réalité.
                         </h2>
-                        <p class="text-gray-500 mt-4 text-sm leading-relaxed max-w-xs">
-                            Discutons de votre projet. Nos sessions sont con\u00e7ues pour cibler l'essence de votre marque et tracer la voie vers l'excellence.
-                        </p>
+                        <p class="text-gray-500 mt-4 text-sm leading-relaxed max-w-xs">Discutons de votre projet. Nos sessions sont conçues pour cibler l'essence de votre marque et tracer la voie vers l'excellence.</p>
                     </div>
                     <div class="relative z-10 mt-10 space-y-5">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 shrink-0 rounded-full bg-[#262626] flex items-center justify-center">
                                 <span class="material-icons text-[#a855f7] text-lg">schedule</span>
                             </div>
-                            <span class="text-sm text-white font-medium">Appel Strat\u00e9gique (30-min)</span>
+                            <span class="text-sm text-white font-medium">Appel Stratégique (30-min)</span>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 shrink-0 rounded-full bg-[#262626] flex items-center justify-center">
@@ -981,14 +979,15 @@
                 </div>
 
                 <!-- Right Form Panel -->
-                <div class="md:col-span-3 bg-[#1a1919] relative">
+                <div class="col-span-1 md:col-span-3 bg-[#1a1919] relative">
                     <!-- Desktop close button -->
                     <button onclick="closeBookingModal()" class="hidden md:flex absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 items-center justify-center text-gray-500 hover:text-white transition-all z-10">
                         <span class="material-icons text-base">close</span>
                     </button>
 
+                    <!-- Scrollable on mobile, normal on desktop -->
                     <div class="modal-wrapper">
-                        <!-- The Form -->
+                        <!-- Form -->
                         <form id="n8nBookingForm" class="form-scroll p-5 md:p-10 space-y-4">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
@@ -996,7 +995,7 @@
                                     <input type="text" name="name" required class="booking-input" placeholder="Jean Dupont">
                                 </div>
                                 <div>
-                                    <label class="booking-label">T\u00e9l\u00e9phone</label>
+                                    <label class="booking-label">Téléphone</label>
                                     <input type="tel" name="phone" required class="booking-input" placeholder="+32 470 00 00">
                                 </div>
                             </div>
@@ -1007,18 +1006,18 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="booking-label">Entreprise</label>
-                                    <input type="text" name="businessName" required class="booking-input" placeholder="Votre Soci\u00e9t\u00e9">
+                                    <input type="text" name="businessName" required class="booking-input" placeholder="Votre Société">
                                 </div>
                                 <div>
                                     <label class="booking-label">Secteur</label>
                                     <div class="relative">
                                         <select name="businessType" required class="booking-input cursor-pointer" style="appearance:none;-webkit-appearance:none">
-                                            <option disabled selected value="">S\u00e9lectionner...</option>
+                                            <option disabled selected value="">Sélectionner...</option>
                                             <option value="saas">SaaS / Tech</option>
                                             <option value="ecommerce">E-commerce</option>
                                             <option value="horeca">Restaurant / Horeca</option>
                                             <option value="services">Services / Conseil</option>
-                                            <option value="immo">Immobilier / Luxe</option>
+                                            <option value="luxury">Immobilier / Luxe</option>
                                             <option value="other">Autre</option>
                                         </select>
                                         <span class="material-icons absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none text-lg">expand_more</span>
@@ -1030,14 +1029,14 @@
                                 <input type="url" name="website" class="booking-input" placeholder="https://...">
                             </div>
                             <div>
-                                <label class="booking-label">D\u00e9tails du Projet</label>
-                                <textarea name="message" rows="3" required class="booking-input resize-none" placeholder="D\u00e9crivez vos besoins et objectifs..."></textarea>
+                                <label class="booking-label">Détails du Projet</label>
+                                <textarea name="message" rows="3" required class="booking-input resize-none" placeholder="Décrivez vos besoins et objectifs..."></textarea>
                             </div>
                             <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-primary text-white font-bold text-base tracking-tight hover:shadow-[0_0_24px_rgba(156,72,234,0.5)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
                                 <span>Confirmer la Session</span>
                                 <span class="material-icons group-hover:translate-x-1 transition-transform text-lg">arrow_forward</span>
                             </button>
-                            <p class="text-center text-[10px] text-gray-700 pb-2">Donn\u00e9es prot\u00e9g\u00e9es &bull; 100% confidentiel</p>
+                            <p class="text-center text-[10px] text-gray-700 pb-2">Données protégées &bull; 100% confidentiel</p>
                         </form>
 
                         <!-- Success State -->
@@ -1048,10 +1047,8 @@
                                     <span class="material-icons text-4xl text-[#a855f7]" style="font-variation-settings:'FILL' 1">mark_email_unread</span>
                                 </div>
                             </div>
-                            <h2 class="font-display text-2xl md:text-3xl font-extrabold tracking-tight mb-3 text-white">Presque Termin\u00e9 !</h2>
-                            <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
-                                Votre application email devrait s'ouvrir. Si ce n'est pas le cas, choisissez ci-dessous :
-                            </p>
+                            <h2 class="font-display text-2xl md:text-3xl font-extrabold tracking-tight mb-3 text-white">Presque Terminé !</h2>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">Votre application email devrait s'ouvrir. Si ce n'est pas le cas, choisissez ci-dessous :</p>
                             <div class="w-full flex flex-col gap-3 max-w-xs">
                                 <a id="btnGmail" href="#" target="_blank" class="flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-gradient-primary text-white font-bold text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_4px_20px_rgba(156,72,234,0.3)]">
                                     <span class="material-icons text-lg">mail</span> Ouvrir dans Gmail
@@ -1114,15 +1111,15 @@
             submitBtn.innerHTML = '<span class="animate-spin material-icons">refresh</span> Envoi...';
 
             const data = Object.fromEntries(new FormData(e.target).entries());
-            const subject = encodeURIComponent(`Nouvelle Demande D\u00e9mo - ${data.businessName || data.name}`);
-            let body = `Nouvelle Demande de D\u00e9mo :\n\n`;
-            body += `Nom : ${data.name || '-'}\n`;
-            body += `T\u00e9l\u00e9phone : ${data.phone || '-'}\n`;
-            body += `Email : ${data.email || '-'}\n`;
-            body += `Entreprise : ${data.businessName || '-'}\n`;
-            body += `Secteur : ${data.businessType || '-'}\n`;
-            body += `Site Web : ${data.website || '-'}\n\n`;
-            body += `D\u00e9tails du Projet :\n${data.message || '-'}\n`;
+            const subject = encodeURIComponent(`Nouvelle Demande Démo - ${data.businessName || data.name}`);
+            let body = `Nouvelle Demande de Démo :\n\n`;
+            body += `Nom: ${data.name || '-'}\n`;
+            body += `Téléphone: ${data.phone || '-'}\n`;
+            body += `Email: ${data.email || '-'}\n`;
+            body += `Entreprise: ${data.businessName || '-'}\n`;
+            body += `Secteur: ${data.businessType || '-'}\n`;
+            body += `Site Web: ${data.website || '-'}\n\n`;
+            body += `Détails du Projet:\n${data.message || '-'}\n`;
             const eb = encodeURIComponent(body);
 
             document.getElementById('btnGmail').href = `https://mail.google.com/mail/?view=cm&fs=1&to=clancymarcos@gmail.com&su=${subject}&body=${eb}`;
@@ -1142,8 +1139,8 @@
             e.preventDefault();
             navigator.clipboard.writeText('clancymarcos@gmail.com');
             const b = e.currentTarget;
-            b.innerHTML = '<span class="material-icons text-sm">check</span> Adresse copi\u00e9e !';
-            setTimeout(() => { b.innerHTML = '<span class="material-icons text-sm">content_copy</span> Copier l\'adresse email'; }, 3000);
+            b.innerHTML = '<span class="material-icons text-sm">check</span> Adresse copiée !';
+            setTimeout(() => { b.innerHTML = '<span class="material-icons text-sm">content_copy</span> Copier l'adresse email'; }, 3000);
         });
     </script>
 </body>

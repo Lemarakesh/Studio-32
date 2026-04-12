@@ -912,23 +912,32 @@
             margin-bottom: 7px;
             padding-left: 4px;
         }
-        /* Mobile: scrollable wrapper */
-        #bookingModal .modal-wrapper {
-            width: 100%;
-            max-height: 88vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
+        /* Mobile bar — hidden by default, shown only on small screens */
+        #bookingModal .sidebar-mobile-bar {
+            display: none;
         }
-        #bookingModal .modal-wrapper::-webkit-scrollbar { width: 4px; }
-        #bookingModal .modal-wrapper::-webkit-scrollbar-track { background: transparent; }
-        #bookingModal .modal-wrapper::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
-        /* Desktop: sidebar visible, form scrollable */
-        @media (min-width: 768px) {
-            #bookingModal .modal-wrapper {
-                max-height: unset;
-                overflow-y: unset;
+        @media (max-width: 767px) {
+            #bookingModal .sidebar-mobile-bar {
+                background: #131313;
+                padding: 16px 20px 14px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
             }
+            /* Mobile: scrollable form wrapper */
+            #bookingModal .modal-wrapper {
+                max-height: 82vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+            }
+            #bookingModal .modal-wrapper::-webkit-scrollbar { width: 4px; }
+            #bookingModal .modal-wrapper::-webkit-scrollbar-track { background: transparent; }
+            #bookingModal .modal-wrapper::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
+        }
+        /* Desktop: form scroll */
+        @media (min-width: 768px) {
             #bookingModal .form-scroll {
                 max-height: 68vh;
                 overflow-y: auto;
@@ -938,15 +947,6 @@
             #bookingModal .form-scroll::-webkit-scrollbar-track { background: transparent; }
             #bookingModal .form-scroll::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
         }
-        /* Mobile top bar */
-        #bookingModal .sidebar-mobile-bar {
-            background: #131313;
-            padding: 16px 20px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
     </style>
     <div id="bookingModal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true">
         <!-- Backdrop -->
@@ -954,29 +954,27 @@
 
         <!-- Modal Content -->
         <div class="relative z-10 flex min-h-screen items-center justify-center p-3 md:p-6">
-            <div class="glass-panel modal-glow border-glow-rim w-full max-w-4xl rounded-2xl md:rounded-[2rem] overflow-hidden relative transform transition-all duration-300 scale-95 opacity-0 md:grid md:grid-cols-5" id="bookingModalContent">
+            <div class="glass-panel modal-glow border-glow-rim w-full max-w-4xl rounded-2xl md:rounded-[2rem] overflow-hidden relative transform transition-all duration-300 scale-95 opacity-0 grid grid-cols-1 md:grid-cols-5" id="bookingModalContent">
 
-                <!-- Mobile top bar -->
-                <div class="sidebar-mobile-bar md:hidden">
+                <!-- Mobile top bar (CSS hides this on desktop) -->
+                <div class="sidebar-mobile-bar col-span-1 md:col-span-5">
                     <div>
-                        <span class="text-[#a855f7] font-bold text-[9px] tracking-[0.2em] uppercase block mb-0.5">Discovery Phase</span>
-                        <span class="text-white font-bold text-sm">Free Demo — MW Design</span>
+                        <span style="color:#a855f7;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:2px">Discovery Phase</span>
+                        <span style="color:#fff;font-weight:700;font-size:14px">Free Demo — MW Design</span>
                     </div>
-                    <button onclick="closeBookingModal()" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
-                        <span class="material-icons text-lg">close</span>
+                    <button onclick="closeBookingModal()" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:#9ca3af;border:none;cursor:pointer">
+                        <span class="material-icons" style="font-size:18px">close</span>
                     </button>
                 </div>
 
-                <!-- Left Sidebar (desktop only) -->
+                <!-- Left Sidebar (desktop only, hidden on mobile via Tailwind) -->
                 <div class="hidden md:flex md:col-span-2 bg-[#131313] p-10 flex-col justify-between relative overflow-hidden">
                     <div class="relative z-10">
                         <span class="text-[#a855f7] font-bold text-[10px] tracking-[0.2em] uppercase">The Discovery Phase</span>
                         <h2 class="font-display text-3xl font-extrabold tracking-tight mt-3 leading-tight text-white">
                             Transforming <br/><span class="text-gradient-primary">Vision</span> into Reality.
                         </h2>
-                        <p class="text-gray-500 mt-4 text-sm leading-relaxed max-w-xs">
-                            Let's discuss your next project. Our sessions are designed to uncover the core of your brand and map out the path to creative excellence.
-                        </p>
+                        <p class="text-gray-500 mt-4 text-sm leading-relaxed max-w-xs">Let's discuss your next project. Our sessions are designed to uncover the core of your brand and map out the path to creative excellence.</p>
                     </div>
                     <div class="relative z-10 mt-10 space-y-5">
                         <div class="flex items-center gap-4">
@@ -996,14 +994,15 @@
                 </div>
 
                 <!-- Right Form Panel -->
-                <div class="md:col-span-3 bg-[#1a1919] relative">
+                <div class="col-span-1 md:col-span-3 bg-[#1a1919] relative">
                     <!-- Desktop close button -->
                     <button onclick="closeBookingModal()" class="hidden md:flex absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 items-center justify-center text-gray-500 hover:text-white transition-all z-10">
                         <span class="material-icons text-base">close</span>
                     </button>
 
+                    <!-- Scrollable on mobile, normal on desktop -->
                     <div class="modal-wrapper">
-                        <!-- The Form -->
+                        <!-- Form -->
                         <form id="n8nBookingForm" class="form-scroll p-5 md:p-10 space-y-4">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
@@ -1064,9 +1063,7 @@
                                 </div>
                             </div>
                             <h2 class="font-display text-2xl md:text-3xl font-extrabold tracking-tight mb-3 text-white">Almost Done!</h2>
-                            <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
-                                Your email app should open. If not, choose below:
-                            </p>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">Your email app should open. If not, choose below:</p>
                             <div class="w-full flex flex-col gap-3 max-w-xs">
                                 <a id="btnGmail" href="#" target="_blank" class="flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-gradient-primary text-white font-bold text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_4px_20px_rgba(156,72,234,0.3)]">
                                     <span class="material-icons text-lg">mail</span> Open in Gmail
