@@ -848,224 +848,230 @@
     </script>
     <!-- Booking Modal -->
     <style>
-        /* Modal Form Premium Styles */
-        #bookingModal .form-label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.35);
-            margin-bottom: 8px;
+        .glass-panel {
+            background: rgba(26, 25, 25, 0.82);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
         }
-
-        #bookingModal .form-label .material-icons {
-            font-size: 13px;
-            color: #a855f7;
-            opacity: 0.8;
+        .modal-glow {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(168,85,247,0.08);
         }
-
-        #bookingModal .form-input {
+        .border-glow-rim {
+            border-top: 0.5px solid rgba(185,113,255,0.22);
+            border-left: 0.5px solid rgba(185,113,255,0.1);
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #9c48ea 0%, #cc97ff 100%);
+        }
+        .text-gradient-primary {
+            background: linear-gradient(135deg, #cc97ff 0%, #9c48ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .booking-input {
             width: 100%;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(38,38,38,0.9);
+            border: 1px solid rgba(255,255,255,0.06);
             border-radius: 12px;
-            padding: 13px 16px;
-            color: white;
-            font-size: 0.9rem;
-            font-family: 'Space Grotesk', sans-serif;
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            padding: 14px 16px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
             outline: none;
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-appearance: none;
+            appearance: none;
         }
-
-        #bookingModal .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.15);
+        .booking-input::placeholder { color: rgba(119,117,117,0.7); }
+        .booking-input:focus {
+            border-color: rgba(168,85,247,0.6);
+            box-shadow: 0 0 0 3px rgba(168,85,247,0.12);
         }
-
-        #bookingModal .form-input:focus {
-            border-color: rgba(168, 85, 247, 0.6);
-            background: rgba(168, 85, 247, 0.05);
-            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12), 0 0 20px rgba(168, 85, 247, 0.1);
-        }
-
-        #bookingModal .form-input:hover:not(:focus) {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        #bookingModalContent {
-            background: linear-gradient(145deg, #0d0d0f 0%, #080810 100%);
-        }
-
-        .modal-header-bar {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #a855f7, #6366f1, transparent);
-        }
-
-        .modal-submit-btn {
-            position: relative;
-            width: 100%;
-            padding: 15px 24px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
-            color: white;
+        .booking-label {
+            display: block;
+            font-size: 0.62rem;
             font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.03em;
-            border: none;
-            cursor: pointer;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #a855f7;
+            margin-bottom: 7px;
+            padding-left: 4px;
+        }
+        /* Mobile: scrollable wrapper */
+        #bookingModal .modal-wrapper {
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+        #bookingModal .modal-wrapper::-webkit-scrollbar { width: 4px; }
+        #bookingModal .modal-wrapper::-webkit-scrollbar-track { background: transparent; }
+        #bookingModal .modal-wrapper::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
+        /* Desktop: sidebar visible, form scrollable */
+        @media (min-width: 768px) {
+            #bookingModal .modal-wrapper {
+                max-height: unset;
+                overflow-y: unset;
+            }
+            #bookingModal .form-scroll {
+                max-height: 68vh;
+                overflow-y: auto;
+                padding-right: 4px;
+            }
+            #bookingModal .form-scroll::-webkit-scrollbar { width: 4px; }
+            #bookingModal .form-scroll::-webkit-scrollbar-track { background: transparent; }
+            #bookingModal .form-scroll::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
+        }
+        /* Mobile top bar */
+        #bookingModal .sidebar-mobile-bar {
+            background: #131313;
+            padding: 16px 20px 14px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
-            box-shadow: 0 4px 24px rgba(168, 85, 247, 0.3), 0 0 0 1px rgba(168, 85, 247, 0.2);
-            overflow: hidden;
-        }
-
-        .modal-submit-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
-            transition: opacity 0.2s;
-        }
-
-        .modal-submit-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 32px rgba(168, 85, 247, 0.45), 0 0 0 1px rgba(168, 85, 247, 0.3);
-            filter: brightness(1.05);
-        }
-
-        .modal-submit-btn:active {
-            transform: translateY(0px);
-        }
-
-        .modal-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
-            margin: 4px 0;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
     </style>
-    <div id="bookingModal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300" role="dialog"
-        aria-modal="true">
+    <div id="bookingModal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true">
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeBookingModal()"></div>
 
         <!-- Modal Content -->
-        <div class="relative z-10 flex min-h-screen items-center justify-center p-4">
-            <div class="w-full max-w-lg transform overflow-hidden rounded-2xl shadow-2xl transition-all scale-95 opacity-0 ring-1 ring-white/10"
-                id="bookingModalContent">
+        <div class="relative z-10 flex min-h-screen items-center justify-center p-3 md:p-6">
+            <div class="glass-panel modal-glow border-glow-rim w-full max-w-4xl rounded-2xl md:rounded-[2rem] overflow-hidden relative transform transition-all duration-300 scale-95 opacity-0 md:grid md:grid-cols-5" id="bookingModalContent">
 
-                <!-- Gradient accent bar -->
-                <div class="modal-header-bar"></div>
+                <!-- Mobile top bar -->
+                <div class="sidebar-mobile-bar md:hidden">
+                    <div>
+                        <span class="text-[#a855f7] font-bold text-[9px] tracking-[0.2em] uppercase block mb-0.5">Phase de D\u00e9couverte</span>
+                        <span class="text-white font-bold text-sm">D\u00e9mo Gratuite MW Design</span>
+                    </div>
+                    <button onclick="closeBookingModal()" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                        <span class="material-icons text-lg">close</span>
+                    </button>
+                </div>
 
-                <!-- Header -->
-                <div class="relative px-7 pt-7 pb-5">
-                    <button onclick="closeBookingModal()"
-                        class="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-500 hover:text-white transition-all">
+                <!-- Left Sidebar (desktop only) -->
+                <div class="hidden md:flex md:col-span-2 bg-[#131313] p-10 flex-col justify-between relative overflow-hidden">
+                    <div class="relative z-10">
+                        <span class="text-[#a855f7] font-bold text-[10px] tracking-[0.2em] uppercase">Phase de D\u00e9couverte</span>
+                        <h2 class="font-display text-3xl font-extrabold tracking-tight mt-3 leading-tight text-white">
+                            Transformez votre <br/><span class="text-gradient-primary">Vision</span> en R\u00e9alit\u00e9.
+                        </h2>
+                        <p class="text-gray-500 mt-4 text-sm leading-relaxed max-w-xs">
+                            Discutons de votre projet. Nos sessions sont con\u00e7ues pour cibler l'essence de votre marque et tracer la voie vers l'excellence.
+                        </p>
+                    </div>
+                    <div class="relative z-10 mt-10 space-y-5">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-full bg-[#262626] flex items-center justify-center">
+                                <span class="material-icons text-[#a855f7] text-lg">schedule</span>
+                            </div>
+                            <span class="text-sm text-white font-medium">Appel Strat\u00e9gique (30-min)</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-full bg-[#262626] flex items-center justify-center">
+                                <span class="material-icons text-[#a855f7] text-lg">auto_awesome</span>
+                            </div>
+                            <span class="text-sm text-white font-medium">Roadmap du Projet Offerte</span>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-[#9c48ea]/20 blur-3xl pointer-events-none"></div>
+                </div>
+
+                <!-- Right Form Panel -->
+                <div class="md:col-span-3 bg-[#1a1919] relative">
+                    <!-- Desktop close button -->
+                    <button onclick="closeBookingModal()" class="hidden md:flex absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 items-center justify-center text-gray-500 hover:text-white transition-all z-10">
                         <span class="material-icons text-base">close</span>
                     </button>
-                    <div class="flex items-center gap-3 mb-1">
-                        <div class="w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center">
-                            <span class="material-icons text-primary text-sm">rocket_launch</span>
+
+                    <div class="modal-wrapper">
+                        <!-- The Form -->
+                        <form id="n8nBookingForm" class="form-scroll p-5 md:p-10 space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="booking-label">Nom Complet</label>
+                                    <input type="text" name="name" required class="booking-input" placeholder="Jean Dupont">
+                                </div>
+                                <div>
+                                    <label class="booking-label">T\u00e9l\u00e9phone</label>
+                                    <input type="tel" name="phone" required class="booking-input" placeholder="+32 470 00 00">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="booking-label">Email Professionnel</label>
+                                <input type="email" name="email" required class="booking-input" placeholder="jean@entreprise.com">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="booking-label">Entreprise</label>
+                                    <input type="text" name="businessName" required class="booking-input" placeholder="Votre Soci\u00e9t\u00e9">
+                                </div>
+                                <div>
+                                    <label class="booking-label">Secteur</label>
+                                    <div class="relative">
+                                        <select name="businessType" required class="booking-input cursor-pointer" style="appearance:none;-webkit-appearance:none">
+                                            <option disabled selected value="">S\u00e9lectionner...</option>
+                                            <option value="saas">SaaS / Tech</option>
+                                            <option value="ecommerce">E-commerce</option>
+                                            <option value="horeca">Restaurant / Horeca</option>
+                                            <option value="services">Services / Conseil</option>
+                                            <option value="immo">Immobilier / Luxe</option>
+                                            <option value="other">Autre</option>
+                                        </select>
+                                        <span class="material-icons absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none text-lg">expand_more</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="booking-label">Site Web <span class="text-gray-700 normal-case font-normal tracking-normal">(optionnel)</span></label>
+                                <input type="url" name="website" class="booking-input" placeholder="https://...">
+                            </div>
+                            <div>
+                                <label class="booking-label">D\u00e9tails du Projet</label>
+                                <textarea name="message" rows="3" required class="booking-input resize-none" placeholder="D\u00e9crivez vos besoins et objectifs..."></textarea>
+                            </div>
+                            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-primary text-white font-bold text-base tracking-tight hover:shadow-[0_0_24px_rgba(156,72,234,0.5)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
+                                <span>Confirmer la Session</span>
+                                <span class="material-icons group-hover:translate-x-1 transition-transform text-lg">arrow_forward</span>
+                            </button>
+                            <p class="text-center text-[10px] text-gray-700 pb-2">Donn\u00e9es prot\u00e9g\u00e9es &bull; 100% confidentiel</p>
+                        </form>
+
+                        <!-- Success State -->
+                        <div id="formStatus" class="hidden p-8 md:p-10 flex-col justify-center items-center text-center">
+                            <div class="relative mb-5">
+                                <div class="absolute inset-0 bg-[#a855f7]/20 blur-2xl rounded-full"></div>
+                                <div class="relative w-20 h-20 flex items-center justify-center bg-[#262626] rounded-full border border-[#a855f7]/30 shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                                    <span class="material-icons text-4xl text-[#a855f7]" style="font-variation-settings:'FILL' 1">mark_email_unread</span>
+                                </div>
+                            </div>
+                            <h2 class="font-display text-2xl md:text-3xl font-extrabold tracking-tight mb-3 text-white">Presque Termin\u00e9 !</h2>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
+                                Votre application email devrait s'ouvrir. Si ce n'est pas le cas, choisissez ci-dessous :
+                            </p>
+                            <div class="w-full flex flex-col gap-3 max-w-xs">
+                                <a id="btnGmail" href="#" target="_blank" class="flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-gradient-primary text-white font-bold text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_4px_20px_rgba(156,72,234,0.3)]">
+                                    <span class="material-icons text-lg">mail</span> Ouvrir dans Gmail
+                                </a>
+                                <a id="btnOutlook" href="#" target="_blank" class="flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-[#262626] text-white font-bold text-sm border border-white/10 transition-all hover:border-[#a855f7]/50 active:scale-95">
+                                    <span class="material-icons text-[#a855f7] text-lg">forward_to_inbox</span> Ouvrir dans Outlook
+                                </a>
+                                <button id="btnCopyEmail" class="mt-2 flex items-center justify-center gap-2 text-gray-600 hover:text-white text-xs uppercase tracking-widest transition-colors py-2">
+                                    <span class="material-icons text-sm">content_copy</span> Copier l'adresse email
+                                </button>
+                            </div>
+                            <button onclick="closeBookingModal()" class="mt-6 text-xs font-bold uppercase tracking-widest text-[#a855f7] hover:text-white transition-colors border border-[#a855f7]/30 hover:border-white/30 px-5 py-2 rounded-full">Fermer</button>
                         </div>
-                        <h3 class="text-xl font-bold text-white tracking-tight">Étape 1 : Démo Gratuite</h3>
                     </div>
-                    <p class="text-xs text-gray-500 ml-11">Réservez votre démonstration gratuite et 100% prise en charge.</p>
                 </div>
-
-                <div class="modal-divider mx-7"></div>
-
-                <!-- Form -->
-                <form id="n8nBookingForm" class="px-7 py-5 space-y-4 max-h-[75vh] overflow-y-auto no-scrollbar">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="form-label">
-                                <span class="material-icons">person</span> Nom Complet
-                            </label>
-                            <input type="text" name="name" required class="form-input" placeholder="John Doe">
-                        </div>
-                        <div>
-                            <label class="form-label">
-                                <span class="material-icons">phone</span> Téléphone
-                            </label>
-                            <input type="tel" name="phone" required class="form-input" placeholder="+32 470 00 00 00">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="form-label">
-                            <span class="material-icons">alternate_email</span> Email Professionnel
-                        </label>
-                        <input type="email" name="email" required class="form-input" placeholder="john@company.com">
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="form-label">
-                                <span class="material-icons">business</span> Nom de l'Entreprise
-                            </label>
-                            <input type="text" name="businessName" required class="form-input" placeholder="Studio 32">
-                        </div>
-                        <div>
-                            <label class="form-label">
-                                <span class="material-icons">category</span> Type d'Activité
-                            </label>
-                            <input type="text" name="businessType" required class="form-input"
-                                placeholder="Restaurant, SaaS, Avocat...">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="form-label">
-                            <span class="material-icons">link</span> Site Web Actuel
-                            <span class="text-gray-700 normal-case font-normal tracking-normal">(optionnel)</span>
-                        </label>
-                        <input type="url" name="website" class="form-input" placeholder="https://...">
-                    </div>
-
-                    <div>
-                        <label class="form-label">
-                            <span class="material-icons">notes</span> Détails du Projet
-                        </label>
-                        <textarea name="message" rows="3" required class="form-input resize-none"
-                            placeholder="Décrivez vos besoins, vos objectifs..."></textarea>
-                    </div>
-
-                    <div class="pt-2 pb-1">
-                        <button type="submit" id="submitBtn" class="modal-submit-btn">
-                            <span>Envoyer la Demande</span>
-                            <span class="material-icons text-sm">send</span>
-                        </button>
-                        <p class="text-center text-[10px] text-gray-700 mt-3">Vos données sont protégées &bull; Aucun
-                            spam</p>
-                    </div>
-                </form>
-
-                <!-- Success/Error Message -->
-                <div id="formStatus" class="hidden px-7 py-10 text-center">
-                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
-                        style="background: radial-gradient(circle, rgba(34,197,94,0.15) 0%, transparent 70%); border: 1px solid rgba(34,197,94,0.2);">
-                        <span class="material-icons text-3xl text-green-400">check</span>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-2">Message Envoyé !</h4>
-                    <p class="text-gray-500 text-sm">Nous avons bien reçu votre demande.<br>Un email de confirmation
-                        vous a été envoyé.</p>
-                    <button onclick="closeBookingModal()"
-                        class="mt-6 text-xs font-bold uppercase tracking-widest text-primary hover:text-white transition-colors border border-primary/30 hover:border-white/30 px-5 py-2 rounded-full">Fermer</button>
-                </div>
-
-                <!-- Bottom accent -->
-                <div class="modal-header-bar opacity-30"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // Modal Functions
         const modal = document.getElementById('bookingModal');
         const modalContent = document.getElementById('bookingModalContent');
         const form = document.getElementById('n8nBookingForm');
@@ -1074,7 +1080,6 @@
 
         function openBookingModal() {
             modal.classList.remove('hidden');
-            // Force reflow
             void modal.offsetWidth;
             modal.classList.remove('opacity-0');
             modalContent.classList.remove('scale-95', 'opacity-0');
@@ -1088,65 +1093,57 @@
             modalContent.classList.add('scale-95', 'opacity-0');
             setTimeout(() => {
                 modal.classList.add('hidden');
-                // Reset form
-                if (!form.classList.contains('hidden')) {
-                    form.reset();
-                }
-                // Reset views if success was shown
                 if (!formStatus.classList.contains('hidden')) {
                     formStatus.classList.add('hidden');
+                    formStatus.classList.remove('flex');
                     form.classList.remove('hidden');
                 }
+                form.reset();
                 document.body.style.overflow = '';
             }, 300);
         }
 
-        // Close on Escape
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                closeBookingModal();
-            }
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeBookingModal();
         });
 
-        // Form Submission
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            // Loading State
-            const originalBtnText = submitBtn.innerHTML;
+            const orig = submitBtn.innerHTML;
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-spin material-icons">refresh</span> Envoi en cours...';
+            submitBtn.innerHTML = '<span class="animate-spin material-icons">refresh</span> Envoi...';
 
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData.entries());
-            data.timestamp = new Date().toISOString();
-            data.source = 'Landing Page V2';
+            const data = Object.fromEntries(new FormData(e.target).entries());
+            const subject = encodeURIComponent(`Nouvelle Demande D\u00e9mo - ${data.businessName || data.name}`);
+            let body = `Nouvelle Demande de D\u00e9mo :\n\n`;
+            body += `Nom : ${data.name || '-'}\n`;
+            body += `T\u00e9l\u00e9phone : ${data.phone || '-'}\n`;
+            body += `Email : ${data.email || '-'}\n`;
+            body += `Entreprise : ${data.businessName || '-'}\n`;
+            body += `Secteur : ${data.businessType || '-'}\n`;
+            body += `Site Web : ${data.website || '-'}\n\n`;
+            body += `D\u00e9tails du Projet :\n${data.message || '-'}\n`;
+            const eb = encodeURIComponent(body);
 
-            try {
-                // Pointing to our Vercel API Route to bypass all CORS strictly
-                const WEBHOOK_URL = '/api/booking';
+            document.getElementById('btnGmail').href = `https://mail.google.com/mail/?view=cm&fs=1&to=clancymarcos@gmail.com&su=${subject}&body=${eb}`;
+            document.getElementById('btnOutlook').href = `https://outlook.live.com/mail/0/deeplink/compose?to=clancymarcos@gmail.com&subject=${subject}&body=${eb}`;
+            window.location.href = `mailto:clancymarcos@gmail.com?subject=${subject}&body=${eb}`;
 
-                const response = await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-
-                if (!response.ok) throw new Error(`Erreur serveur: ${response.status}`);
-
-                // Success State
+            setTimeout(() => {
                 form.classList.add('hidden');
                 formStatus.classList.remove('hidden');
+                formStatus.classList.add('flex');
+                submitBtn.innerHTML = orig;
+                submitBtn.disabled = false;
+            }, 800);
+        });
 
-            } catch (error) {
-                console.error('Error:', error);
-                alert("Le formulaire n'a pas pu être envoyé à n8n.\n\nAssurez-vous que:\n1. Votre workflow n8n est ouvert et écoute (bouton 'Listen for Test Event').\n2. Le noeud Webhook est configuré sur POST et sur le chemin 'booking'.\n\nSi vous avez déjà activé le workflow, changez l'URL dans le code en '/webhook/' au lieu de '/webhook-test/'.");
-                submitBtn.innerHTML = 'Erreur de connexion n8n';
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                }, 4000);
-            }
+        document.getElementById('btnCopyEmail').addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText('clancymarcos@gmail.com');
+            const b = e.currentTarget;
+            b.innerHTML = '<span class="material-icons text-sm">check</span> Adresse copi\u00e9e !';
+            setTimeout(() => { b.innerHTML = '<span class="material-icons text-sm">content_copy</span> Copier l\'adresse email'; }, 3000);
         });
     </script>
 </body>

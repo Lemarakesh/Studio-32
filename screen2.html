@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MW DESIGN | Project Inquiry Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#ffffff",
+                    "primary": "#cc97ff",
+                    "background": "#0e0e0e",
+                    "surface-container": "#1a1919",
+                    "secondary-fixed-dim": "#ebaeff",
+                    "primary-dim": "#9c48ea",
+                    "secondary-container": "#6a2785",
+                    "on-tertiary": "#680921",
+                    "tertiary-fixed": "#ff909c",
+                    "on-secondary-fixed": "#550e71",
+                    "tertiary-container": "#fe7e8e",
+                    "on-tertiary-fixed": "#39000d",
+                    "on-surface": "#ffffff",
+                    "on-error-container": "#ffb2b9",
+                    "outline": "#777575",
+                    "inverse-surface": "#fcf8f8",
+                    "surface-container-highest": "#262626",
+                    "on-primary-fixed": "#000000",
+                    "surface-dim": "#0e0e0e",
+                    "on-error": "#490013",
+                    "on-secondary-fixed-variant": "#753290",
+                    "on-tertiary-fixed-variant": "#711227",
+                    "surface-container-high": "#201f1f",
+                    "outline-variant": "#494847",
+                    "inverse-primary": "#842cd3",
+                    "tertiary": "#ff95a0",
+                    "error-dim": "#d73357",
+                    "surface-container-low": "#131313",
+                    "surface-bright": "#2c2c2c",
+                    "error-container": "#a70138",
+                    "on-secondary": "#530b6f",
+                    "primary-container": "#c284ff",
+                    "surface-variant": "#262626",
+                    "secondary-fixed": "#f1c1ff",
+                    "on-tertiary-container": "#570018",
+                    "surface-tint": "#cc97ff",
+                    "on-secondary-container": "#f1bfff",
+                    "on-primary-fixed-variant": "#430076",
+                    "tertiary-fixed-dim": "#fa7c8b",
+                    "primary-fixed": "#c284ff",
+                    "tertiary-dim": "#f47786",
+                    "surface-container-lowest": "#000000",
+                    "on-surface-variant": "#adaaaa",
+                    "inverse-on-surface": "#565554",
+                    "error": "#ff6e84",
+                    "secondary": "#e197fc",
+                    "on-primary": "#47007c",
+                    "primary-fixed-dim": "#b971ff",
+                    "surface": "#0e0e0e",
+                    "secondary-dim": "#d28aed",
+                    "on-primary-container": "#360061"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(26, 25, 25, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.2), 0 0 40px rgba(168, 85, 247, 0.1);
+        }
+        .modal-rim {
+            border-top: 0.5px solid rgba(185, 113, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container/30">
+<!-- Blurred Background Content (Portfolio Simulation) -->
+<main class="fixed inset-0 overflow-hidden filter blur-xl opacity-40 select-none pointer-events-none">
+<!-- TopNavBar Simulation -->
+<nav class="flex justify-between items-center px-8 py-6 w-full">
+<div class="text-2xl font-black tracking-tighter">MW DESIGN</div>
+<div class="flex gap-8 font-headline">
+<span>Portfolio</span>
+<span>Services</span>
+<span>Process</span>
+<span>Contact</span>
+</div>
+</nav>
+<section class="max-w-screen-2xl mx-auto px-8 pt-20">
+<div class="flex flex-col gap-12">
+<h1 class="text-[8rem] font-headline font-extrabold tracking-tighter leading-none">CRAFTING<br/>DIGITAL<br/>GOTHAM.</h1>
+<div class="grid grid-cols-2 gap-8">
+<div class="h-96 bg-surface-container-highest rounded-xl"></div>
+<div class="h-96 bg-surface-container-highest rounded-xl"></div>
+</div>
+</div>
+</section>
+<!-- Background Atmospheric Glows -->
+<div class="fixed top-1/4 -left-20 w-96 h-96 bg-primary-dim/10 rounded-full blur-[120px]"></div>
+<div class="fixed bottom-1/4 -right-20 w-[500px] h-[500px] bg-secondary-container/5 rounded-full blur-[150px]"></div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
+<!-- The "Nocturnal Architect" Modal -->
+<div class="glass-panel modal-rim w-full max-w-lg rounded-[2rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.8),0_0_30px_rgba(168,85,247,0.1)] relative">
+<!-- Close Button -->
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-on-surface transition-colors duration-300 scale-95 active:scale-90">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<div class="px-8 pt-12 pb-10 flex flex-col items-center text-center">
+<!-- Icon Header -->
+<div class="relative mb-8">
+<div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
+<div class="relative w-20 h-20 flex items-center justify-center bg-surface-container-highest rounded-full border border-primary/20 neon-glow">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">mark_email_unread</span>
+</div>
+</div>
+<!-- Success Message -->
+<h2 class="font-headline text-3xl font-extrabold tracking-tight mb-4 text-on-surface">Almost Done!</h2>
+<p class="text-on-surface-variant font-body leading-relaxed mb-10 max-w-sm">
+                    Your email application should open, if not choose your inbox below:
+                </p>
+<!-- Action Buttons Cluster -->
+<div class="w-full flex flex-col gap-4">
+<!-- Primary: Gmail -->
+<a class="group relative flex items-center justify-center gap-3 px-8 py-5 rounded-xl bg-gradient-to-tr from-primary-dim to-primary text-on-primary-fixed font-headline font-bold text-lg transition-transform hover:scale-[1.02] active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mail</span>
+                        Open in Gmail
+                        <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_20px_rgba(204,151,255,0.4)]"></div>
+</a>
+<!-- Secondary: Outlook -->
+<a class="group flex items-center justify-center gap-3 px-8 py-5 rounded-xl bg-surface-container-highest text-on-surface font-headline font-bold text-lg border border-outline-variant/20 transition-all hover:bg-surface-bright hover:border-primary/30 active:scale-95" href="#">
+<span class="material-symbols-outlined text-primary">forward_to_inbox</span>
+                        Open in Outlook
+                    </a>
+<!-- Tertiary: Copy Email -->
+<button class="mt-4 flex items-center justify-center gap-2 text-on-surface-variant hover:text-primary font-label text-[11px] uppercase tracking-[0.2em] transition-all duration-300">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                        Copy email address
+                    </button>
+</div>
+</div>
+<!-- Subtle Tonal Transition (Footer simulation within modal) -->
+<div class="bg-surface-container-low/50 px-8 py-4 text-center">
+<p class="text-[9px] font-label uppercase tracking-widest text-outline">
+                    Awaiting your vision • MW Design Studio
+                </p>
+</div>
+</div>
+</div>
+<!-- Hidden Assets for visual reference as per instructions -->
+<div class="hidden">
+<img data-alt="Abstract smooth gradient flowing from deep violet to obsidian black with subtle grain texture and glass like reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxL2aPBRA88s6Vp3xsJtytURxcjc-FU2mB0U0TmPoqZMw1DCMbuAIHtTcDZwcCLwyQ5_ZtTJBhSzuxtP2Dm6XfKEC4HpZ7F-Dwnd9tpqRofbBhmTOVvbc4Xq9S8vMIhRuCS1z1rCcT1ahuNgTVFXW_hoxqREo3-HNeKQjGUyaCu7gBELqVDxFfLoRZ_ju6bJFJNj6UKm5fWyguStgHT_ZLhrLPKVS12-0K3Q7nWphQHYXeRDihdHnJGMd8lt1dh1iGP3a_y9DxjD4"/>
+</div>
+</body></html>

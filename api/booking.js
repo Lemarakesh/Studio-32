@@ -1,8 +1,8 @@
-export default async function handler(req, res) {
+﻿export default async function handler(req, res) {
     if (req.method === 'POST') {
         try {
             // We use a fixed subdomain for localtunnel so you don't have to keep updating it!
-            const TUNNEL_URL = 'https://studio32.loca.lt/webhook/booking';
+            const TUNNEL_URL = 'https://mwstudio.loca.lt/webhook/booking';
             
             const response = await fetch(TUNNEL_URL, {
                 method: 'POST',

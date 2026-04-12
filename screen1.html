@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book a Discovery Call | MW Design</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#a70138",
+                      "on-tertiary-fixed": "#39000d",
+                      "primary-fixed-dim": "#b971ff",
+                      "surface-dim": "#0e0e0e",
+                      "outline-variant": "#494847",
+                      "primary": "#cc97ff",
+                      "on-tertiary": "#680921",
+                      "surface-container-lowest": "#000000",
+                      "on-primary-fixed": "#000000",
+                      "error-dim": "#d73357",
+                      "surface-container-low": "#131313",
+                      "error": "#ff6e84",
+                      "primary-dim": "#9c48ea",
+                      "surface-container-high": "#201f1f",
+                      "tertiary-container": "#fe7e8e",
+                      "primary-container": "#c284ff",
+                      "primary-fixed": "#c284ff",
+                      "surface-tint": "#cc97ff",
+                      "secondary-container": "#6a2785",
+                      "inverse-on-surface": "#565554",
+                      "on-secondary-container": "#f1bfff",
+                      "background": "#0e0e0e",
+                      "inverse-primary": "#842cd3",
+                      "on-background": "#ffffff",
+                      "tertiary-dim": "#f47786",
+                      "secondary": "#e197fc",
+                      "on-secondary": "#530b6f",
+                      "secondary-fixed": "#f1c1ff",
+                      "surface-variant": "#262626",
+                      "on-error": "#490013",
+                      "surface-container-highest": "#262626",
+                      "on-error-container": "#ffb2b9",
+                      "on-tertiary-fixed-variant": "#711227",
+                      "tertiary-fixed": "#ff909c",
+                      "outline": "#777575",
+                      "surface-bright": "#2c2c2c",
+                      "secondary-fixed-dim": "#ebaeff",
+                      "on-primary-fixed-variant": "#430076",
+                      "on-secondary-fixed-variant": "#753290",
+                      "on-secondary-fixed": "#550e71",
+                      "on-primary": "#47007c",
+                      "on-surface": "#ffffff",
+                      "tertiary-fixed-dim": "#fa7c8b",
+                      "on-primary-container": "#360061",
+                      "surface": "#0e0e0e",
+                      "surface-container": "#1a1919",
+                      "secondary-dim": "#d28aed",
+                      "on-tertiary-container": "#570018",
+                      "tertiary": "#ff95a0",
+                      "on-surface-variant": "#adaaaa",
+                      "inverse-surface": "#fcf8f8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0e0e0e;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(26, 25, 25, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .modal-glow {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 15px rgba(168, 85, 247, 0.08);
+        }
+        .border-glow-rim {
+            border-top: 0.5px solid rgba(185, 113, 255, 0.2);
+            border-left: 0.5px solid rgba(185, 113, 255, 0.1);
+        }
+        .text-gradient-primary {
+            background: linear-gradient(135deg, #cc97ff 0%, #9c48ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #9c48ea 0%, #cc97ff 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-primary/30">
+<!-- Atmospheric Background Glows -->
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-dim/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary-container/10 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- TopNavBar -->
+<header class="bg-neutral-950/60 backdrop-blur-3xl font-['Manrope'] tracking-tight fixed top-0 w-full z-50">
+<div class="flex justify-between items-center px-8 py-4 w-full max-w-7xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-white">MW Design</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-neutral-400 hover:text-white transition-colors" href="#">Work</a>
+<a class="text-neutral-400 hover:text-white transition-colors" href="#">Services</a>
+<a class="text-neutral-400 hover:text-white transition-colors" href="#">Contact</a>
+</nav>
+<button class="bg-gradient-primary text-on-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:scale-95 active:duration-150 transition-all shadow-lg shadow-primary-dim/20">
+                Book a Discovery Call
+            </button>
+</div>
+</header>
+<!-- Modal Backdrop -->
+<main class="relative min-h-screen flex items-center justify-center p-6 pt-24 pb-12 bg-surface-dim/40">
+<!-- Premium Booking Modal -->
+<div class="glass-panel modal-glow border-glow-rim w-full max-w-4xl rounded-[2rem] overflow-hidden relative z-10 grid md:grid-cols-5">
+<!-- Sidebar Info Section -->
+<div class="md:col-span-2 bg-surface-container-low p-10 flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<span class="text-primary font-bold text-xs tracking-[0.2em] uppercase font-label">The Discovery Phase</span>
+<h1 class="font-headline text-4xl font-extrabold tracking-tighter mt-4 leading-tight">
+                        Transforming <br/><span class="text-gradient-primary">Vision</span> into <br/>Reality.
+                    </h1>
+<p class="text-on-surface-variant mt-6 font-body text-sm leading-relaxed max-w-xs">
+                        Let's discuss your next project. Our discovery sessions are designed to uncover the core of your brand and map out a path to creative excellence.
+                    </p>
+</div>
+<div class="relative z-10 mt-12 space-y-6">
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-xl">schedule</span>
+</div>
+<span class="text-sm text-on-surface font-medium">30-min Strategy Call</span>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-xl">auto_awesome</span>
+</div>
+<span class="text-sm text-on-surface font-medium">Project Roadmap Deck</span>
+</div>
+</div>
+<!-- Decorative image accent -->
+<div class="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-primary-dim/20 blur-3xl"></div>
+</div>
+<!-- Form Section -->
+<div class="md:col-span-3 p-10 md:p-12 bg-surface-container">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold px-1">Full Name</label>
+<input class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary-dim transition-all outline-none" placeholder="Alex Sterling" type="text"/>
+</div>
+<!-- Phone -->
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold px-1">Phone</label>
+<input class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary-dim transition-all outline-none" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold px-1">Professional Email</label>
+<input class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary-dim transition-all outline-none" placeholder="alex@company.com" type="email"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Company Name -->
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold px-1">Company Name</label>
+<input class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary-dim transition-all outline-none" placeholder="Sterling Industries" type="text"/>
+</div>
+<!-- Business Type -->
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold px-1">Business Type</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-highest border-none rounded-xl px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary-dim transition-all outline-none cursor-pointer">
+<option disabled="" selected="" value="">Select an option</option>
+<option value="saas">SaaS / Technology</option>
+<option value="ecommerce">E-commerce</option>
+<option value="fintech">Fintech</option>
+<option value="luxury">Luxury / Real Estate</option>
+<option value="other">Other</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Website URL -->
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold px-1">Website URL <span class="text-outline font-normal">(Optional)</span></label>
+<input class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary-dim transition-all outline-none" placeholder="https://www.sterling.com" type="url"/>
+</div>
+<!-- Project Details -->
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-semibold px-1">Project Details</label>
+<textarea class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary-dim transition-all outline-none resize-none" placeholder="Tell us about your objectives, timeline, and goals..." rows="4"></textarea>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-4 rounded-xl bg-gradient-primary text-on-primary font-bold tracking-tight hover:shadow-[0_0_20px_rgba(156,72,234,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group" type="submit">
+                        Confirm Discovery Session
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<p class="text-center text-[11px] text-outline font-medium">
+                        By submitting, you agree to our <a class="text-primary hover:underline" href="#">Privacy Policy</a>
+</p>
+</form>
+</div>
+</div>
+<!-- Background decorative image with data-alt -->
+<div class="absolute inset-0 z-0">
+<img alt="Abstract design" class="w-full h-full object-cover opacity-20 grayscale" data-alt="Abstract fluid 3D render with deep purple and black glossy ribbons flowing through a dark atmospheric void with soft reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVL2uY4cpPTq-3clH07yz3NIl2-NMTzQM1IRNCcFvj1o4JqO2vQvrpeC54pekMGs3sDI76dfdpOzouGBV5KJC8fkYaUWx_wmoKUWd1aQBkF77zmGng7w7k-0FrrhiZs1Oc4nA0oWWtchMlaaVx6xnQj0qj80AyyujI5R8xJnURAqeU9suaidUIFYVeVe71UuAQ98nCrW9yrrXBEA-1YAmV8xP-wimNhpYypTSVDYFpL6ee4rrm8M8QgRdl_orJr_I3hSBB3DO8gBY"/>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-neutral-950 w-full py-12 border-t border-white/5 relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 w-full max-w-7xl mx-auto gap-8">
+<div class="text-xl font-black text-white">MW Design</div>
+<div class="flex gap-8 font-['Inter'] text-sm tracking-wide">
+<a class="text-neutral-500 hover:text-purple-400 transition-colors" href="#">Privacy Policy</a>
+<a class="text-neutral-500 hover:text-purple-400 transition-colors" href="#">Terms of Service</a>
+<a class="text-neutral-500 hover:text-purple-400 transition-colors" href="#">Instagram</a>
+</div>
+<div class="text-neutral-500 text-sm font-['Inter'] tracking-wide">
+                © 2024 MW Design. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>
