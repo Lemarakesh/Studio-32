@@ -879,8 +879,14 @@
             transition: border-color 0.2s, box-shadow 0.2s;
             outline: none;
             font-family: 'Space Grotesk', sans-serif;
+        }
+        input.booking-input, textarea.booking-input {
             -webkit-appearance: none;
             appearance: none;
+        }
+        select.booking-input {
+            /* Keep native picker on mobile — no appearance override */
+            color: #ffffff;
         }
         .booking-input::placeholder { color: rgba(119,117,117,0.7); }
         .booking-input:focus {
@@ -991,7 +997,13 @@
                     <!-- Scrollable on mobile, normal on desktop -->
                     <div class="modal-wrapper">
                         <!-- Form -->
-                        <form id="n8nBookingForm" class="form-scroll p-5 md:px-10 md:pb-10 md:pt-16 space-y-4">
+                        <form id="n8nBookingForm" class="form-scroll p-5 md:px-10 md:pb-10 md:pt-10 space-y-4">
+                            <!-- Form heading -->
+                            <div class="mb-2">
+                                <p class="text-[9px] font-bold tracking-[0.2em] uppercase text-[#a855f7] mb-1">Aucun engagement &bull; 100% gratuit</p>
+                                <h3 class="text-white font-extrabold text-xl leading-tight">Demande de Démo Gratuite</h3>
+                                <p class="text-gray-500 text-xs mt-1">Remplissez le formulaire et nous vous contacterons sous 24h.</p>
+                            </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="booking-label">Nom Complet</label>
@@ -1014,7 +1026,7 @@
                                 <div>
                                     <label class="booking-label">Secteur</label>
                                     <div class="relative">
-                                        <select name="businessType" required class="booking-input cursor-pointer" style="appearance:none;-webkit-appearance:none">
+                                        <select name="businessType" required class="booking-input cursor-pointer">
                                             <option disabled selected value="">Sélectionner...</option>
                                             <option value="saas">SaaS / Tech</option>
                                             <option value="ecommerce">E-commerce</option>
@@ -1036,7 +1048,7 @@
                                 <textarea name="message" rows="3" required class="booking-input resize-none" placeholder="Décrivez vos besoins et objectifs..."></textarea>
                             </div>
                             <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-primary text-white font-bold text-base tracking-tight hover:shadow-[0_0_24px_rgba(156,72,234,0.5)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
-                                <span>Confirmer la Session</span>
+                                <span>Demander ma Démo Gratuite</span>
                                 <span class="material-icons group-hover:translate-x-1 transition-transform text-lg">arrow_forward</span>
                             </button>
                             <p class="text-center text-[10px] text-gray-700 pb-2">Données protégées &bull; 100% confidentiel</p>
