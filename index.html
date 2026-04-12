@@ -921,10 +921,13 @@
             #bookingModal .modal-wrapper::-webkit-scrollbar-track { background: transparent; }
             #bookingModal .modal-wrapper::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
         }
-        /* Desktop: form scroll */
+        /* Desktop: form panel fills height, internal scroll only if needed */
         @media (min-width: 768px) {
+            #bookingModal .modal-wrapper {
+                height: 100%;
+            }
             #bookingModal .form-scroll {
-                max-height: 68vh;
+                max-height: calc(100vh - 120px);
                 overflow-y: auto;
                 padding-right: 4px;
             }
@@ -953,7 +956,7 @@
                 </div>
 
                 <!-- Left Sidebar (desktop only, hidden on mobile via Tailwind) -->
-                <div class="hidden md:flex md:col-span-2 bg-[#131313] p-10 flex-col justify-between relative overflow-hidden">
+                <div class="hidden md:flex md:col-span-2 bg-[#131313] p-10 md:min-h-[560px] flex-col justify-between relative overflow-hidden">
                     <div class="relative z-10">
                         <span class="text-[#a855f7] font-bold text-[10px] tracking-[0.2em] uppercase">Phase de Découverte</span>
                         <h2 class="font-display text-3xl font-extrabold tracking-tight mt-3 leading-tight text-white">
@@ -979,7 +982,7 @@
                 </div>
 
                 <!-- Right Form Panel -->
-                <div class="col-span-1 md:col-span-3 bg-[#1a1919] relative">
+                <div class="col-span-1 md:col-span-3 bg-[#1a1919] relative md:min-h-[560px]">
                     <!-- Desktop close button -->
                     <button onclick="closeBookingModal()" class="hidden md:flex absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 items-center justify-center text-gray-500 hover:text-white transition-all z-10">
                         <span class="material-icons text-base">close</span>
@@ -988,7 +991,7 @@
                     <!-- Scrollable on mobile, normal on desktop -->
                     <div class="modal-wrapper">
                         <!-- Form -->
-                        <form id="n8nBookingForm" class="form-scroll p-5 md:p-10 space-y-4">
+                        <form id="n8nBookingForm" class="form-scroll p-5 md:px-10 md:pb-10 md:pt-16 space-y-4">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="booking-label">Nom Complet</label>
@@ -1140,7 +1143,7 @@
             navigator.clipboard.writeText('clancymarcos@gmail.com');
             const b = e.currentTarget;
             b.innerHTML = '<span class="material-icons text-sm">check</span> Adresse copiée !';
-            setTimeout(() => { b.innerHTML = '<span class="material-icons text-sm">content_copy</span> Copier l'adresse email'; }, 3000);
+            setTimeout(() => { b.innerHTML = '<span class="material-icons text-sm">content_copy</span> Copier l\'adresse email'; }, 3000);
         });
     </script>
 </body>
