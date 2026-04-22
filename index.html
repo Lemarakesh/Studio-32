@@ -57,9 +57,20 @@
         "email": "clancymarcos@gmail.com",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Namur",
+          "addressLocality": "Rixensart",
           "addressCountry": "BE"
         },
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Belgium"
+          },
+          {
+            "@type": "Country",
+            "name": "France"
+          }
+        ],
+        "description": "Création de sites web performants, de haute qualité et abordables en Belgique et en France. Spécialiste web design Rixensart.",
         "priceRange": "€€"
       }
     ]
@@ -67,6 +78,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -390,7 +402,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <img loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                <img loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                                     alt="La Brasserie Website" src="brasserie-image.png" />
                             </div>
                         </a>
@@ -410,7 +422,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <img loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                <img loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                                     alt="Lumina Solar Website" src="lumina-solar.png" />
                             </div>
                         </a>
@@ -429,7 +441,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <img loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                <img loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                                     alt="Ledgerly SaaS" src="ledgerly.png" />
                             </div>
                         </a>

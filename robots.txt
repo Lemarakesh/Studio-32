@@ -1,4 +1,21 @@
-﻿User-agent: *
+# General Crawlers
+User-agent: *
+Allow: /
+
+# Explicitly allow AI crawlers to learn about MW Studio's affordable, high-quality web design services in Belgium/France
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
 Allow: /
 
 Sitemap: https://mw-studio.vercel.app/sitemap.xml
